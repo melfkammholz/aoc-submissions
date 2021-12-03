@@ -10,7 +10,7 @@
     </style>
   </head>
   <body>
-    <div class="container-fluid" style="margin: 1em;">
+    <div class="container-fluid" style="margin: 1em 0;">
       <div class="row">
         <div class="col-3">
           <ul id="users" class="list-group"></ul>
@@ -126,6 +126,12 @@
             lang: day => fwcdPaths[day].lang,
             solutionUrl: (day, part) =>
               `https://raw.githubusercontent.com/fwcd/advent-of-code-2021/main/${fwcdPaths[day].path}`
+          },
+          {
+            name: "maclement",
+            lang: _ => "haskell",
+            solutionUrl: (day, part) =>
+            `https://raw.githubusercontent.com/maclement/advent-of-code-2021/main/Day${day + 1}/Day${day + 1}.hs`
           }
         ];
         
