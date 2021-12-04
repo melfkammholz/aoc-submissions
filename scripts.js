@@ -116,35 +116,23 @@ window.addEventListener("load", async () => {
     index: 0
   };
 
-  const langs = [];
-
-  async function loadScript(url) {
-    return new Promise((resolve, reject) => {
-      const script = document.createElement("script");
-      script.addEventListener("load", () => {
-        resolve();
-      });
-      script.src = url;
-      document.body.appendChild(script);
-    });
-  }
-
   async function loadSolution(user, day, part) {
     const url = user.solutionUrl(day, part);
-    const code = url ? await (await fetch(url)).text() : "No solution yet!";
+    const code = await fetch(url)
+      .then(res => res.ok ? res.text() : Promise.reject())
+      .catch(_ => "No solution yet!");
     const preEl = document.createElement("pre");
     const codeEl = document.createElement("code");
     const lang = user.lang(day);
-    if (lang) {
-      codeEl.classList.add(`language-${lang}`);
-      if (!langs.includes(lang)) {
-        langs.push(lang);
-        await loadScript(`https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-${lang}.min.js`);
+    await Prism.plugins.autoloader.loadLanguages(
+      lang,
+      () => {
+        codeEl.innerHTML = Prism.highlight(code, Prism.languages[lang], user.lang);
+      },
+      () => {
+        codeEl.innerText = code;
       }
-      codeEl.innerHTML = Prism.highlight(code, Prism.languages[lang], user.lang);
-    } else {
-      codeEl.innerText = code;
-    }
+    );
     preEl.appendChild(codeEl);
     document.getElementById("preview").innerHTML = "";
     document.getElementById("preview").appendChild(preEl);
