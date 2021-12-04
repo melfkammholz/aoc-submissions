@@ -90,9 +90,11 @@ window.addEventListener("load", async () => {
     },
     {
       name: "fwcd",
-      lang: day => fwcdPaths[day].lang,
+      lang: day => day < fwcdPaths.length ? fwcdPaths[day].lang : null,
       solutionUrl: (day, part) =>
-        `https://raw.githubusercontent.com/fwcd/advent-of-code-2021/main/${fwcdPaths[day].path}`
+        day < fwcdPaths.length
+          ? `https://raw.githubusercontent.com/fwcd/advent-of-code-2021/main/${fwcdPaths[day].path}`
+          : null
     },
     {
       name: "maclement",
@@ -128,17 +130,21 @@ window.addEventListener("load", async () => {
   }
 
   async function loadSolution(user, day, part) {
-    const res = await fetch(user.solutionUrl(day, part))
-    const code = await res.text();
+    const url = user.solutionUrl(day, part);
+    const code = url ? await (await fetch(url)).text() : "No solution yet!";
     const preEl = document.createElement("pre");
     const codeEl = document.createElement("code");
     const lang = user.lang(day);
-    codeEl.classList.add(`language-${lang}`);
-    if (!langs.includes(lang)) {
-      langs.push(lang);
-      await loadScript(`https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-${lang}.min.js`);
+    if (lang) {
+      codeEl.classList.add(`language-${lang}`);
+      if (!langs.includes(lang)) {
+        langs.push(lang);
+        await loadScript(`https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-${lang}.min.js`);
+      }
+      codeEl.innerHTML = Prism.highlight(code, Prism.languages[lang], user.lang);
+    } else {
+      codeEl.innerText = code;
     }
-    codeEl.innerHTML = Prism.highlight(code, Prism.languages[lang], user.lang);
     preEl.appendChild(codeEl);
     document.getElementById("preview").innerHTML = "";
     document.getElementById("preview").appendChild(preEl);
