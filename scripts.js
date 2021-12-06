@@ -118,21 +118,21 @@ window.addEventListener("load", async () => {
 
   async function loadSolution(user, day, part) {
     const url = user.solutionUrl(day, part);
-    const code = await fetch(url)
-      .then(res => res.ok ? res.text() : Promise.reject())
-      .catch(_ => "No solution yet!");
     const preEl = document.createElement("pre");
     const codeEl = document.createElement("code");
     const lang = user.lang(day);
-    await Prism.plugins.autoloader.loadLanguages(
-      lang,
-      () => {
-        codeEl.innerHTML = Prism.highlight(code, Prism.languages[lang], user.lang);
-      },
-      () => {
-        codeEl.innerText = code;
-      }
-    );
+    try {
+      const code = await fetch(url)
+        .then(res => res.ok ? res.text() : Promise.reject(new Error("No solution yet!")));
+      await Prism.plugins.autoloader.loadLanguages(
+        lang,
+        () => {
+          codeEl.innerHTML = Prism.highlight(code, Prism.languages[lang], user.lang);
+        }
+      );
+    } catch (err) {
+      codeEl.textContent = err.message;
+    }
     preEl.appendChild(codeEl);
     document.getElementById("preview").innerHTML = "";
     document.getElementById("preview").appendChild(preEl);
