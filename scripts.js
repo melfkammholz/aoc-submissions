@@ -105,8 +105,10 @@ window.addEventListener("load", async () => {
     {
       name: "xtay2",
       lang: _ => "java",
-      solutionUrl: (day, part) =>
-      `https://raw.githubusercontent.com/xtay2/AdventOfCode/main/src/aoc2021/day${day + 1}/Day${day + 1}.java`
+      solutionUrl: (day, part) => {
+        const _day = (day + 1).toString().padStart(2, "0");
+        return `https://raw.githubusercontent.com/xtay2/AdventOfCode/main/src/aoc2021/day${_day}/Day${_day}.java`;
+      }
     }
   ];
 
