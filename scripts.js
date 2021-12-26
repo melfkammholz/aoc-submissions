@@ -112,8 +112,9 @@ window.addEventListener("load", async () => {
     }
   ];
 
+  const days = new Date(Math.min(new Date("2021-12-25").valueOf(), Date.now())).getDate();
   const state = {
-    day: new Date().getDate() - 1,
+    day: days - 1,
     part: 0,
     index: 0
   };
@@ -162,7 +163,7 @@ window.addEventListener("load", async () => {
     });
   });
 
-  [...Array(new Date().getDate())].forEach((_, i) => {
+  [...Array(days)].forEach((_, i) => {
     const el = document.createElement("li");
     el.classList.add("nav-item");
     const aEl = document.createElement("a");
