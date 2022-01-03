@@ -109,6 +109,12 @@ window.addEventListener("load", async () => {
         const _day = (day + 1).toString().padStart(2, "0");
         return `https://raw.githubusercontent.com/xtay2/AdventOfCode/main/src/aoc2021/day${_day}/Day${day + 1}.java`;
       }
+    },
+    {
+      name: "Skgland",
+      lang: _ => "rust",
+      solutionUrl: (day, part) =>
+      `https://raw.githubusercontent.com/Skgland/Advent-of-Code-2021/master/src/day${day + 1}.rs`
     }
   ];
 
