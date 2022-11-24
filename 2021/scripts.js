@@ -19,11 +19,11 @@ window.addEventListener("load", async () => {
     },
     {
       name: "Melf",
-      lang: _ => "haskell",
+      lang: _ => "clike",
       solutionUrl: (day, part) => {
         const _day = (day + 1).toString().padStart(2, "0");
         const _part = ["A", "B"][part];
-        return `https://raw.githubusercontent.com/melfkammholz/aoc22/main/day${_day}/${_part}.hs`
+        return `https://raw.githubusercontent.com/melfkammholz/aoc21/main/day${_day}/${_part}.cc`
       }
     },
     {
@@ -118,9 +118,7 @@ window.addEventListener("load", async () => {
     }
   ];
 
-  const clamp = (min, max, val) => Math.min(max, Math.max(val, min));
-
-  const days = new Date(clamp(new Date("2022-12-01").valueOf(), new Date("2022-12-25").valueOf(), Date.now())).getDate();
+  const days = new Date(Math.min(new Date("2021-12-25").valueOf(), Date.now())).getDate();
   const state = {
     day: days - 1,
     part: 0,
