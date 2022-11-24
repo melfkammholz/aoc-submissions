@@ -1,5 +1,5 @@
 window.addEventListener("load", async () => {
-  const fwcdPathsResponse = await fetch('https://raw.githubusercontent.com/fwcd/advent-of-code-2021/main/paths.json');
+  const fwcdPathsResponse = await fetch('https://raw.githubusercontent.com/fwcd/advent-of-code-2022/main/paths.json');
   const fwcdPaths = JSON.parse(await fwcdPathsResponse.text());
 
   const users = [
