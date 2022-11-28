@@ -107,7 +107,7 @@ window.addEventListener("load", async () => {
       lang: _ => "java",
       solutionUrl: (day, part) => {
         const _day = (day + 1).toString().padStart(2, "0");
-        return `https://raw.githubusercontent.com/xtay2/AdventOfCode/main/src/aoc2021/day${_day}/Day${day + 1}.java`;
+        return `https://raw.githubusercontent.com/xtay2/AdventOfCode/main/src/year2021/day${_day}/Task_${part == 0 ? 'A' : 'B'}.java`;
       }
     },
     {
