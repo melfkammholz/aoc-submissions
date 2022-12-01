@@ -115,6 +115,11 @@ window.addEventListener("load", async () => {
       lang: _ => "rust",
       solutionUrl: (day, part) =>
       `https://raw.githubusercontent.com/Skgland/Advent-of-Code-2021/master/src/day${day + 1}.rs`
+    },
+    {
+      name: "tuhhy",
+      lang: _ => "python",
+      solutionUrl: (day, part) => `https://raw.githubusercontent.com/tuhhy/aoc/master/Day${day+1}/Task${["A", "B"][part]}.py`
     }
   ];
 
