@@ -45,7 +45,7 @@ window.addEventListener("load", async () => {
     {
       name: "tuhhy",
       lang: _ => "python",
-      solutionUrl: (day, part) => `https://raw.githubusercontent.com/tuhhy/aoc/master/Day${day+1}/Task${["A", "B"][part]}.py`
+      solutionUrl: (day, part) => `https://raw.githubusercontent.com/tuhhy/aoc/master/Day${day + 1}/Task${["A", "B"][part]}.py`
     },
     {
       name: "Yorik Hansen",
@@ -53,6 +53,14 @@ window.addEventListener("load", async () => {
       solutionUrl: (day, part) => {
         const _day = (day + 1).toString().padStart(2, "0");
         return `https://raw.githubusercontent.com/YorikHansen/AdventOfCode/main/2022/day${_day}/part${part + 1}.py`
+      }
+    },
+    {
+      name: "Skgland",
+      lang: _ => "rust",
+      solutionUrl: (day, _part) => {
+        const _day = (day + 1).toString().padStart(2, "0");
+        return `https://raw.githubusercontent.com/Skgland/Advent-of-Code/main/year2022/src/day${_day}.rs`
       }
     }
   ];
