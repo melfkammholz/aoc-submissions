@@ -93,7 +93,7 @@ window.addEventListener("load", async () => {
       lang: day => day < fwcdPaths.length ? fwcdPaths[day].lang : null,
       solutionUrl: (day, part) =>
         day < fwcdPaths.length
-          ? `https://raw.githubusercontent.com/fwcd/advent-of-code-2021/main/${fwcdPaths[day].path}`
+          ? `https://raw.githubusercontent.com/fwcd/advent-of-code-2022/main/${fwcdPaths[day].path}`
           : null
     },
     {
