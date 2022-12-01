@@ -71,6 +71,8 @@ window.addEventListener("load", async () => {
     const preEl = document.createElement("pre");
     const codeEl = document.createElement("code");
     const lang = user.lang(day);
+    codeEl.style.color = "white";
+    
     try {
       const code = await fetch(url)
         .then(res => res.ok ? res.text() : Promise.reject(new Error("No solution yet!")));
