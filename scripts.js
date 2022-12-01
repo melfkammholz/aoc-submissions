@@ -133,3 +133,11 @@ window.addEventListener("load", async () => {
 
   loadSolution(users[state.index], state.day, state.part);
 });
+
+if (window.matchMedia("(prefers-color-scheme: dark)")) {
+  const link = document.createElement("link");
+  link.rel = "stylesheet";
+  link.href = "https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism-tomorrow.min.css";
+  document.querySelector("head").appendChild(link);
+}
+
