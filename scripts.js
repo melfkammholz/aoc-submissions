@@ -52,7 +52,7 @@ window.addEventListener("load", async () => {
       lang: _ => "python",
       solutionUrl: (day, part) => {
         const _day = (day + 1).toString().padStart(2, "0");
-        return `https://raw.githubusercontent.com/YorikHansen/AdventOfCode/main/2022/day{_day}/part${part + 1}.py`
+        return `https://raw.githubusercontent.com/YorikHansen/AdventOfCode/main/2022/day${_day}/part${part + 1}.py`
       }
     }
   ];
