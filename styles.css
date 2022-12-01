@@ -15,6 +15,6 @@
 
 .list-group-item, .nav-link {
   cursor: pointer;
-  color: white;
-  background-color: #1f2327;
+  color: white !important;
+  background-color: #1f2327 !important;
 }
