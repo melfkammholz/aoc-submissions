@@ -4,6 +4,20 @@ window.addEventListener("load", async () => {
 
   const users = [
     {
+      name: "Alexander P",
+      lang: _ => "clike",
+      solutionUrl: (day, part) => {
+        return `https://raw.githubusercontent.com/Zeldacrafter/CompProg-Solutions/master/AdventOfCode/2022/${day + 1}/${part + 1}.cc`
+      }
+    },
+    {
+      name: "I3J03RN",
+      lang: _ => "clike",
+      solutionUrl: (day, part) => {
+        return `https://raw.githubusercontent.com/I3J03RN/ProgrammingChallenges/master/AoC/2022/${day + 1}.cc`
+      }
+    },
+    {
       name: "Melf",
       lang: _ => "haskell",
       solutionUrl: (day, part) => {
