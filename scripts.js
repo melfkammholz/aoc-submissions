@@ -4,20 +4,6 @@ window.addEventListener("load", async () => {
 
   const users = [
     {
-      name: "Alexander P",
-      lang: _ => "clike",
-      solutionUrl: (day, part) => {
-        return `https://raw.githubusercontent.com/Zeldacrafter/CompProg-Solutions/master/AdventOfCode/2021/${day + 1}/${part + 1}.cc`
-      }
-    },
-    {
-      name: "I3J03RN",
-      lang: _ => "clike",
-      solutionUrl: (day, part) => {
-        return `https://raw.githubusercontent.com/I3J03RN/ProgrammingChallenges/master/AoC/2021/${day + 1}.cc`
-      }
-    },
-    {
       name: "Melf",
       lang: _ => "haskell",
       solutionUrl: (day, part) => {
@@ -27,94 +13,20 @@ window.addEventListener("load", async () => {
       }
     },
     {
-      name: "Estugon",
-      lang: _ => "clike",
-      solutionUrl: (day, part) => {
-        return `https://raw.githubusercontent.com/Estugon/Advent-Of-Code-2021/main/day${day + 1}/day${day + 1}.cpp`
-      }
-    },
-    {
-      name: "JulianGrabitzky",
-      lang: _ => "clike",
-      solutionUrl: (day, part) => {
-        const _part = ["a", "b"][part];
-        return `https://raw.githubusercontent.com/JulianGrabitzky/advent-of-code-2021/main/day/${day + 1}/${_part}.py`
-      }
-    },
-    {
-      name: "H1ghBre4k3r",
-      lang: _ => "js",
-      solutionUrl: (day, part) => {
-        const _day = (day + 1).toString().padStart(2, "0");
-        return `https://raw.githubusercontent.com/H1ghBre4k3r/advent-of-code-2021/main/day${_day}/solution0${part + 1}.js`
-      }
-    },
-    {
-      name: "l1k3ab0t",
-      lang: _ => "rust",
-      solutionUrl: (day, part) => {
-        return `https://raw.githubusercontent.com/l1k3ab0t/aoc2021/main/src/day${day + 1}.rs`
-      }
-    },
-    {
-      name: "LeoVerto",
-      lang: _ => "python",
-      solutionUrl: (day, part) => {
-        const _day = (day + 1).toString().padStart(2, "0");
-        const _part = ["a", "b"][part];
-        return `https://raw.githubusercontent.com/LeoVerto/advent-of-code-2021/main/days/${_day}/${_day}${_part}.py`
-      }
-    },
-    {
-      name: "Niatsuna",
-      lang: _ => "python",
-      solutionUrl: (day, part) => {
-        const _day = (day + 1).toString().padStart(2, "0");
-        return `https://raw.githubusercontent.com/Niatsuna/advent-of-code-2021/master/${_day}.py`
-      }
-    },
-    {
-      name: "mjt001",
-      lang: _ => "python",
-      solutionUrl: (day, part) => {
-        const _day = (day + 1).toString().padStart(2, "0");
-        return `https://raw.githubusercontent.com/mjt001/AdventofCode2021_mirror/main/${_day}/main${day + 1}${part + 1}.py`
-      }
-    },
-    {
-      name: "integermainvoid",
-      lang: _ => "python",
-      solutionUrl: (day, part) => {
-        return `https://raw.githubusercontent.com/integermainvoid/advent_of_code/main/day%20${day + 1}/aoc_${part + 1}.py`
-      }
-    },
-    {
       name: "fwcd",
       lang: day => day < fwcdPaths.length ? fwcdPaths[day].lang : null,
       solutionUrl: (day, part) =>
         day < fwcdPaths.length
-          ? `https://raw.githubusercontent.com/fwcd/advent-of-code-2021/main/${fwcdPaths[day].path}`
+          ? `https://raw.githubusercontent.com/fwcd/advent-of-code-2022/main/${fwcdPaths[day].path}`
           : null
-    },
-    {
-      name: "maclement",
-      lang: _ => "haskell",
-      solutionUrl: (day, part) =>
-      `https://raw.githubusercontent.com/maclement/advent-of-code-2021/main/Day${day + 1}/Day${day + 1}.hs`
     },
     {
       name: "xtay2",
       lang: _ => "java",
       solutionUrl: (day, part) => {
         const _day = (day + 1).toString().padStart(2, "0");
-        return `https://raw.githubusercontent.com/xtay2/AdventOfCode/main/src/aoc2021/day${_day}/Day${day + 1}.java`;
+        return `https://raw.githubusercontent.com/xtay2/AdventOfCode/main/src/year2022/day${_day}/Task_${["A", "B"][part]}.java`
       }
-    },
-    {
-      name: "Skgland",
-      lang: _ => "rust",
-      solutionUrl: (day, part) =>
-      `https://raw.githubusercontent.com/Skgland/Advent-of-Code-2021/master/src/day${day + 1}.rs`
     },
     {
       name: "tuhhy",
