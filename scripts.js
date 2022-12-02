@@ -32,6 +32,7 @@ window.addEventListener("load", async () => {
     {
       name: "fwcd",
       lang: day => day < fwcdPaths.length ? fwcdPaths[day].lang : null,
+      encoding: day => day < fwcdPaths.length ? fwcdPaths[day].encoding : null,
       solutionUrl: (day, part) =>
         day < fwcdPaths.length
           ? `https://raw.githubusercontent.com/fwcd/advent-of-code-${year}/main/${fwcdPaths[day].path}`
@@ -87,9 +88,12 @@ window.addEventListener("load", async () => {
     const preEl = document.createElement("pre");
     const codeEl = document.createElement("code");
     const lang = user.lang(day);
+    const encoding = "encoding" in user ? user.encoding(day) : "utf-8";
+    const decoder = new TextDecoder(encoding);
     try {
-      const code = await fetch(url)
-        .then(res => res.ok ? res.text() : Promise.reject(new Error("No solution yet!")));
+      const buffer = await fetch(url)
+        .then(res => res.ok ? res.arrayBuffer() : Promise.reject(new Error("No solution yet!")));
+      const code = decoder.decode(buffer);
       await Prism.plugins.autoloader.loadLanguages(
         lang,
         () => {
