@@ -84,6 +84,11 @@ window.addEventListener("load", async () => {
         const _day = (day + 1).toString().padStart(2, "0");
         return `https://raw.githubusercontent.com/b3z/aoc/master/${year}/${_day}/${part + 1}.py`
       }
+    },
+    {
+      name: "Dobiko",
+      lang: _ => "clike",
+      solutionUrl: (day, _part) => `https://github.com/jnccd/AdventOfCode/blob/main/Dec{day + 1}/Program.cs`
     }
   ];
 
