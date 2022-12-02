@@ -71,6 +71,11 @@ window.addEventListener("load", async () => {
       name: "Estugon",
       lang: _ => "clike",
       solutionUrl: (day, _part) => `https://raw.githubusercontent.com/Estugon/Advent-Of-Code-${year}/main/day${day + 1}/day${day + 1}.cpp`
+    },
+    {
+      name: "Dormanil",
+      lang: _ => "fsharp",
+      solutionUrl: (day, _part) => `https://raw.githubusercontent.com/Dormanil/Advent-of-Code/${year}/Dec${day}/Program.fs`
     }
   ];
 
