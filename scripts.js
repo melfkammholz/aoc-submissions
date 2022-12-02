@@ -88,7 +88,7 @@ window.addEventListener("load", async () => {
     {
       name: "Dobiko",
       lang: _ => "clike",
-      solutionUrl: (day, _part) => `https://raw.githubusercontent.com/jnccd/AdventOfCode/main/Dec{day + 1}/Program.cs`
+      solutionUrl: (day, _part) => `https://raw.githubusercontent.com/jnccd/AdventOfCode/main/Dec${day + 1}/Program.cs`
     }
   ];
 
