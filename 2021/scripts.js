@@ -115,7 +115,15 @@ window.addEventListener("load", async () => {
       lang: _ => "rust",
       solutionUrl: (day, part) =>
       `https://raw.githubusercontent.com/Skgland/Advent-of-Code-2021/master/src/day${day + 1}.rs`
-    }
+    },
+    {
+      name: "H1tchhiker",
+      lang: _ => "python",
+      solutionUrl: (day, part) => {
+        const _day = (day + 1).toString().padStart(2, "0");
+        return `https://raw.githubusercontent.com/n00on/AdventOfCode/2022/day${_day}/day${_day}.py`
+      }
+    },
   ];
 
   const days = new Date(Math.min(new Date("2021-12-25").valueOf(), Date.now())).getDate();
