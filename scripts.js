@@ -75,7 +75,7 @@ window.addEventListener("load", async () => {
     {
       name: "Dormanil",
       lang: _ => "fsharp",
-      solutionUrl: (day, _part) => `https://raw.githubusercontent.com/Dormanil/Advent-of-Code/${year}/Dec${day}/Program.fs`
+      solutionUrl: (day, _part) => `https://raw.githubusercontent.com/Dormanil/Advent-of-Code/${year}/Dec${day + 1}/Program.fs`
     },
     {
       name: "b3z",
