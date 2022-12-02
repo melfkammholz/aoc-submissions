@@ -1,5 +1,8 @@
 window.addEventListener("load", async () => {
-  const fwcdPathsResponse = await fetch('https://raw.githubusercontent.com/fwcd/advent-of-code-2022/main/paths.json');
+  const year = 2022;
+  const shortYear = year % 100;
+
+  const fwcdPathsResponse = await fetch(`https://raw.githubusercontent.com/fwcd/advent-of-code-${year}/main/paths.json`);
   const fwcdPaths = JSON.parse(await fwcdPathsResponse.text());
 
   const users = [
@@ -7,14 +10,14 @@ window.addEventListener("load", async () => {
       name: "Alexander P",
       lang: _ => "clike",
       solutionUrl: (day, part) => {
-        return `https://raw.githubusercontent.com/Zeldacrafter/CompProg-Solutions/master/AdventOfCode/2022/${day + 1}/${part + 1}.cc`
+        return `https://raw.githubusercontent.com/Zeldacrafter/CompProg-Solutions/master/AdventOfCode/${year}/${day + 1}/${part + 1}.cc`
       }
     },
     {
       name: "I3J03RN",
       lang: _ => "clike",
       solutionUrl: (day, part) => {
-        return `https://raw.githubusercontent.com/I3J03RN/ProgrammingChallenges/master/AoC/2022/${day + 1}.cc`
+        return `https://raw.githubusercontent.com/I3J03RN/ProgrammingChallenges/master/AoC/${year}/${day + 1}.cc`
       }
     },
     {
@@ -23,7 +26,7 @@ window.addEventListener("load", async () => {
       solutionUrl: (day, part) => {
         const _day = (day + 1).toString().padStart(2, "0");
         const _part = ["A", "B"][part];
-        return `https://raw.githubusercontent.com/melfkammholz/aoc22/main/day${_day}/${_part}.hs`
+        return `https://raw.githubusercontent.com/melfkammholz/aoc${shortYear}/main/day${_day}/${_part}.hs`
       }
     },
     {
@@ -31,7 +34,7 @@ window.addEventListener("load", async () => {
       lang: day => day < fwcdPaths.length ? fwcdPaths[day].lang : null,
       solutionUrl: (day, part) =>
         day < fwcdPaths.length
-          ? `https://raw.githubusercontent.com/fwcd/advent-of-code-2022/main/${fwcdPaths[day].path}`
+          ? `https://raw.githubusercontent.com/fwcd/advent-of-code-${year}/main/${fwcdPaths[day].path}`
           : null
     },
     {
@@ -39,7 +42,7 @@ window.addEventListener("load", async () => {
       lang: _ => "java",
       solutionUrl: (day, part) => {
         const _day = (day + 1).toString().padStart(2, "0");
-        return `https://raw.githubusercontent.com/xtay2/AdventOfCode/main/src/year2022/day${_day}/Task_${["A", "B"][part]}.java`
+        return `https://raw.githubusercontent.com/xtay2/AdventOfCode/main/src/year${year}/day${_day}/Task_${["A", "B"][part]}.java`
       }
     },
     {
@@ -52,7 +55,7 @@ window.addEventListener("load", async () => {
       lang: _ => "python",
       solutionUrl: (day, part) => {
         const _day = (day + 1).toString().padStart(2, "0");
-        return `https://raw.githubusercontent.com/YorikHansen/AdventOfCode/main/2022/day${_day}/part${part + 1}.py`
+        return `https://raw.githubusercontent.com/YorikHansen/AdventOfCode/main/${year}/day${_day}/part${part + 1}.py`
       }
     },
     {
@@ -60,19 +63,19 @@ window.addEventListener("load", async () => {
       lang: _ => "rust",
       solutionUrl: (day, _part) => {
         const _day = (day + 1).toString().padStart(2, "0");
-        return `https://raw.githubusercontent.com/Skgland/Advent-of-Code/main/year2022/src/day${_day}.rs`
+        return `https://raw.githubusercontent.com/Skgland/Advent-of-Code/main/year${year}/src/day${_day}.rs`
       }
     },
     {
       name: "Estugon",
       lang: _ => "clike",
-      solutionUrl: (day, _part) => `https://raw.githubusercontent.com/Estugon/Advent-Of-Code-2022/main/day${day + 1}/day${day + 1}.cpp`
+      solutionUrl: (day, _part) => `https://raw.githubusercontent.com/Estugon/Advent-Of-Code-${year}/main/day${day + 1}/day${day + 1}.cpp`
     }
   ];
 
   const clamp = (min, max, val) => Math.min(max, Math.max(val, min));
 
-  const days = new Date(clamp(new Date("2022-12-01").valueOf(), new Date("2022-12-25").valueOf(), Date.now())).getDate();
+  const days = new Date(clamp(new Date(`${year}-12-01`).valueOf(), new Date(`${year}-12-25`).valueOf(), Date.now())).getDate();
   const state = {
     day: days - 1,
     part: 0,
