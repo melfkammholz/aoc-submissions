@@ -62,6 +62,11 @@ window.addEventListener("load", async () => {
         const _day = (day + 1).toString().padStart(2, "0");
         return `https://raw.githubusercontent.com/Skgland/Advent-of-Code/main/year2022/src/day${_day}.rs`
       }
+    },
+    {
+      name: "Estugon",
+      lang: _ => "clike",
+      solutionUrl: (day, _part) => `https://raw.githubusercontent.com/Estugon/Advent-Of-Code-2022/main/day${day + 1}/day${day + 1}.cpp`
     }
   ];
 
