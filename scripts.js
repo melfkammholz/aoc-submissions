@@ -88,7 +88,7 @@ window.addEventListener("load", async () => {
     const preEl = document.createElement("pre");
     const codeEl = document.createElement("code");
     const lang = user.lang(day);
-    const encoding = "encoding" in user ? user.encoding(day) : "utf-8";
+    const encoding = ("encoding" in user ? user.encoding(day) : null) || "utf-8";
     const decoder = new TextDecoder(encoding);
     try {
       const buffer = await fetch(url)
