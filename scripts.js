@@ -76,6 +76,14 @@ window.addEventListener("load", async () => {
       name: "Dormanil",
       lang: _ => "fsharp",
       solutionUrl: (day, _part) => `https://raw.githubusercontent.com/Dormanil/Advent-of-Code/${year}/Dec${day}/Program.fs`
+    },
+    {
+      name: "b3z",
+      lang: _ => "python",
+      solutionUrl: (day, part) => {
+        const _day = (day + 1).toString().padStart(2, "0");
+        return `https://raw.githubusercontent.com/b3z/aoc/master/${year}/${_day}/${part + 1}.py`
+      }
     }
   ];
 
