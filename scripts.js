@@ -97,6 +97,7 @@ window.addEventListener("load", async () => {
         const _day = (day + 1).toString().padStart(2, "0");
         return `https://raw.githubusercontent.com/n00on/AdventOfCode/${year}/${_day}/day${_day}.py`
       }
+    }
   ];
 
   const clamp = (min, max, val) => Math.min(max, Math.max(val, min));
