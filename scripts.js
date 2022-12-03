@@ -5,6 +5,9 @@ window.addEventListener("load", async () => {
   const fwcdPathsResponse = await fetch(`https://raw.githubusercontent.com/fwcd/advent-of-code-${year}/main/paths.json`);
   const fwcdPaths = JSON.parse(await fwcdPathsResponse.text());
 
+  const estgPathsResponse = await fetch(`https://raw.githubusercontent.com/estugon/advent-of-code-${year}/main/paths.json`);
+  const estgPaths = JSON.parse(await estgPathsResponse.text());
+
   const users = [
     {
       name: "Alexander P",
@@ -69,8 +72,11 @@ window.addEventListener("load", async () => {
     },
     {
       name: "Estugon",
-      lang: _ => "clike",
-      solutionUrl: (day, _part) => `https://raw.githubusercontent.com/Estugon/Advent-Of-Code-${year}/main/day${day + 1}/day${day + 1}.cpp`
+      lang: day => day < estgPaths.length ? estgPaths[day].lang : null,
+      solutionUrl: (day, part) =>
+        day < estgPaths.length
+          ? `https://raw.githubusercontent.com/estugon/advent-of-code-${year}/main/${estgPaths[day].path}`
+          : null
     },
     {
       name: "Dormanil",
