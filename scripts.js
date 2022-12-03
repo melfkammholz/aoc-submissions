@@ -89,7 +89,14 @@ window.addEventListener("load", async () => {
       name: "Dobiko",
       lang: _ => "clike",
       solutionUrl: (day, _part) => `https://raw.githubusercontent.com/jnccd/AdventOfCode/main/Dec${day + 1}/Program.cs`
-    }
+    },
+    {
+      name: "H1tchhiker",
+      lang: _ => "python",
+      solutionUrl: (day, part) => {
+        const _day = (day + 1).toString().padStart(2, "0");
+        return `https://raw.githubusercontent.com/n00on/AdventOfCode/${year}/${_day}/day${_day}.py`
+      }
   ];
 
   const clamp = (min, max, val) => Math.min(max, Math.max(val, min));
