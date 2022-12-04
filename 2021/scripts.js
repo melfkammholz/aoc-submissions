@@ -115,6 +115,12 @@ window.addEventListener("load", async () => {
       lang: _ => "rust",
       solutionUrl: (day, part) =>
       `https://raw.githubusercontent.com/Skgland/Advent-of-Code-2021/master/src/day${day + 1}.rs`
+    },
+    {
+      name: "Zihark",
+      lang: _ => "haskell",
+      solutionUrl: (day, part) =>
+      `https://raw.githubusercontent.com/Ziharrk/aoc2022/main/src/Day${day + 1}.hs`
     }
   ];
 
