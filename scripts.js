@@ -97,6 +97,14 @@ window.addEventListener("load", async () => {
         const _day = (day + 1).toString().padStart(2, "0");
         return `https://raw.githubusercontent.com/n00on/AdventOfCode/main/${year}/${_day}/day${_day}.py`
       }
+    },
+    {
+      name: "H1ghBre4k3r",
+      lang: _ => "rust",
+      solutionUrl: (day, _) => {
+        const _day = (day + 1).toString().padStart(2, "0");
+        return `https://raw.githubusercontent.com/H1ghBre4k3r/aoc-2022/main/src/day_${_day}.rs`
+      }
     }
   ];
 
