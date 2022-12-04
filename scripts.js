@@ -109,14 +109,14 @@ window.addEventListener("load", async () => {
       lang: _ => "rust",
       solutionUrl: (day, _) => {
         const _day = (day + 1).toString().padStart(2, "0");
-        return `https://raw.githubusercontent.com/H1ghBre4k3r/aoc-2022/main/src/day_${_day}.rs`
+        return `https://raw.githubusercontent.com/H1ghBre4k3r/aoc-${year}/main/src/day_${_day}.rs`
       }
     },
     {
       name: "Zihark",
       lang: _ => "haskell",
       solutionUrl: (day, part) =>
-      `https://raw.githubusercontent.com/Ziharrk/aoc2022/main/src/Day${day + 1}.hs`
+      `https://raw.githubusercontent.com/Ziharrk/aoc${year}/main/src/Day${day + 1}.hs`
     }
   ];
 
