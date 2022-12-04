@@ -2,11 +2,8 @@ window.addEventListener("load", async () => {
   const year = 2022;
   const shortYear = year % 100;
 
-  const fwcdPathsResponse = await fetch(`https://raw.githubusercontent.com/fwcd/advent-of-code-${year}/main/paths.json`);
-  const fwcdPaths = JSON.parse(await fwcdPathsResponse.text());
-
-  const estgPathsResponse = await fetch(`https://raw.githubusercontent.com/estugon/advent-of-code-${year}/main/paths.json`);
-  const estgPaths = JSON.parse(await estgPathsResponse.text());
+  const fwcdPaths = await (await fetch(`https://raw.githubusercontent.com/fwcd/advent-of-code-${year}/main/paths.json`)).json();
+  const estgPaths = await (await fetch(`https://raw.githubusercontent.com/estugon/advent-of-code-${year}/main/paths.json`)).json();
 
   const users = [
     {
@@ -34,12 +31,12 @@ window.addEventListener("load", async () => {
     },
     {
       name: "fwcd",
-      lang: day => day < fwcdPaths.length ? fwcdPaths[day].lang : null,
-      encoding: day => day < fwcdPaths.length ? fwcdPaths[day].encoding : null,
-      solutionUrl: (day, part) =>
-        day < fwcdPaths.length
-          ? `https://raw.githubusercontent.com/fwcd/advent-of-code-${year}/main/${fwcdPaths[day].path}`
-          : null
+      lang: day => fwcdPaths[day]?.lang,
+      encoding: day => fwcdPaths[day]?.encoding,
+      solutionUrl: (day, part) => {
+        const path = fwcdPaths[day]?.path;
+        return path ? `https://raw.githubusercontent.com/fwcd/advent-of-code-${year}/main/${path}` : null;
+      }
     },
     {
       name: "xtay2",
@@ -72,11 +69,11 @@ window.addEventListener("load", async () => {
     },
     {
       name: "Estugon",
-      lang: day => day < estgPaths.length ? estgPaths[day].lang : null,
-      solutionUrl: (day, part) =>
-        day < estgPaths.length
-          ? `https://raw.githubusercontent.com/estugon/advent-of-code-${year}/main/${estgPaths[day].path}`
-          : null
+      lang: day => estgPaths[day]?.lang,
+      solutionUrl: (day, part) => {
+        const path = estgPaths[day]?.path;
+        return path ? `https://raw.githubusercontent.com/estugon/advent-of-code-${year}/main/${path}` : null;
+      }
     },
     {
       name: "Dormanil",
@@ -137,8 +134,11 @@ window.addEventListener("load", async () => {
     const encoding = ("encoding" in user ? user.encoding(day) : null) || "utf-8";
     const decoder = new TextDecoder(encoding);
     try {
-      const buffer = await fetch(url)
-        .then(res => res.ok ? res.arrayBuffer() : Promise.reject(new Error("No solution yet!")));
+      const result = url ? await fetch(url) : null;
+      if (!(result?.ok ?? false)) {
+        throw new Error("No solution yet");
+      }
+      const buffer = await result.arrayBuffer();
       const code = decoder.decode(buffer);
       await Prism.plugins.autoloader.loadLanguages(
         lang,
