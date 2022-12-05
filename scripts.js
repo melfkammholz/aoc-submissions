@@ -35,7 +35,7 @@ window.addEventListener("load", async () => {
     {
       name: "fwcd",
       lang: day => fwcdPaths[day]?.lang,
-      langName: day => fwcdPaths[day]?.lang,
+      langName: "Mixed",
       encoding: day => fwcdPaths[day]?.encoding,
       solutionUrl: (day, part) => {
         const path = fwcdPaths[day]?.path;
@@ -78,7 +78,7 @@ window.addEventListener("load", async () => {
     {
       name: "Estugon",
       lang: day => estgPaths[day]?.lang,
-      langName: day => estgPaths[day]?.lang,
+      langName: "Mixed",
       solutionUrl: (day, part) => {
         const path = estgPaths[day]?.path;
         return path ? `https://raw.githubusercontent.com/estugon/advent-of-code-${year}/main/${path}` : null;
@@ -181,7 +181,19 @@ window.addEventListener("load", async () => {
   users.forEach((user, index) => {
     const el = document.createElement("li");
     el.classList.add("list-group-item");
-    el.textContent = user.name + "   [" + user.langName + "]";
+    // Divs
+    const p = document.createElement("div");
+    el.appendChild(p);
+    const dName = document.createElement("div");
+    p.appendChild(dName);
+    const dLang = document.createElement("div");
+    p.appendChild(dLang);
+    // Styles
+    dName.textContent = user.name;
+    dName.style.cssText = "display: inline-block;";
+    dLang.textContent = user.langName;
+    dName.style.cssText = "text-align: right; float:right;";
+    // Listener
     el.addEventListener("click", () => {
       state.index = index;
       document.querySelector(".list-group-item.active").classList.remove("active");
