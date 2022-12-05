@@ -178,22 +178,20 @@ window.addEventListener("load", async () => {
     document.getElementById("preview").appendChild(preEl);
   }
 
+  function render(strings, ...values) {
+    const html = String.raw({ raw: strings }, ...values);
+    const el = document.createElement('div');
+    el.innerHTML = html;
+    return el.children[0];
+  }
+
   users.forEach((user, index) => {
-    const el = document.createElement("li");
-    el.classList.add("list-group-item");
-    // Divs
-    const p = document.createElement("div");
-    el.appendChild(p);
-    const dLang = document.createElement("div");
-    p.appendChild(dLang);
-    const dName = document.createElement("div");
-    p.appendChild(dName);
-    // Styles
-    dLang.textContent = user.langName;
-    dLang.style.cssText = "text-align: right; float:right;";
-    dName.textContent = user.name;
-    dName.style.cssText = "display: inline-block;";
-    // Listener
+    const el = render`
+      <li class="list-group-item">
+        <span>${user.name}</span>
+        <span>${user.langName}</span>
+      </li>
+    `;
     el.addEventListener("click", () => {
       state.index = index;
       document.querySelector(".list-group-item.active").classList.remove("active");

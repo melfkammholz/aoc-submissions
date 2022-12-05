@@ -18,6 +18,11 @@
   cursor: pointer;
 }
 
+#users .list-group-item {
+  display: flex;
+  justify-content: space-between;
+}
+
 @media (prefers-color-scheme: dark) {
   body, .nav, .list-group-item {
     background-color: #2d2d2d;
