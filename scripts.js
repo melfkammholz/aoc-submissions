@@ -138,6 +138,15 @@ window.addEventListener("load", async () => {
         const _day = (day + 1).toString().padStart(2, "0");
         return `https://raw.githubusercontent.com/sebfisch/AdventOfCode/latest/year${year}/day${_day}/Part${part+1}.java`
       }
+    },
+    {
+      name: "hendrick404",
+      lang: _ => "python",
+      langName: "Python",
+      solutionUrl: (day, _part) => {
+        const _day = (day + 1).toString().padStart(2, "0");
+        return `https://raw.githubusercontent.com/hendrick404/advent-of-code-${year}/main/day${_day}/day${_day}.py`;
+      }
     }
   ];
 
