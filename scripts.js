@@ -184,15 +184,15 @@ window.addEventListener("load", async () => {
     // Divs
     const p = document.createElement("div");
     el.appendChild(p);
-    const dName = document.createElement("div");
-    p.appendChild(dName);
     const dLang = document.createElement("div");
     p.appendChild(dLang);
+    const dName = document.createElement("div");
+    p.appendChild(dName);
     // Styles
+    dLang.textContent = user.langName;
+    dLang.style.cssText = "text-align: right; float:right;";
     dName.textContent = user.name;
     dName.style.cssText = "display: inline-block;";
-    dLang.textContent = user.langName;
-    dName.style.cssText = "text-align: right; float:right;";
     // Listener
     el.addEventListener("click", () => {
       state.index = index;
