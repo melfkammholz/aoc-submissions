@@ -35,7 +35,7 @@ window.addEventListener("load", async () => {
     {
       name: "fwcd",
       lang: day => fwcdPaths[day]?.lang,
-      langName: fwcdPaths[day]?.lang,
+      langName: day => fwcdPaths[day]?.lang,
       encoding: day => fwcdPaths[day]?.encoding,
       solutionUrl: (day, part) => {
         const path = fwcdPaths[day]?.path;
@@ -78,7 +78,7 @@ window.addEventListener("load", async () => {
     {
       name: "Estugon",
       lang: day => estgPaths[day]?.lang,
-      langName: estgPaths[day]?.lang,
+      langName: day => estgPaths[day]?.lang,
       solutionUrl: (day, part) => {
         const path = estgPaths[day]?.path;
         return path ? `https://raw.githubusercontent.com/estugon/advent-of-code-${year}/main/${path}` : null;
