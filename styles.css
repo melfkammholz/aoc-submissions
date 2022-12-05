@@ -23,6 +23,26 @@
   justify-content: space-between;
 }
 
+/* X-Small devices (e.g. portrait phones) */
+@media (max-width: 576px) {
+  #users {
+    flex-direction: row;
+    overflow: scroll;
+  }
+
+  .nav {
+    margin-top: 0;
+  }
+
+  .user-name {
+    white-space: nowrap;
+  }
+
+  .user-lang-name {
+    display: none;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   body, .nav, .list-group-item {
     background-color: #2d2d2d;

@@ -197,8 +197,8 @@ window.addEventListener("load", async () => {
   users.forEach((user, index) => {
     const el = render`
       <li class="list-group-item">
-        <span>${user.name}</span>
-        <span>${user.langName}</span>
+        <span class="user-name">${user.name}</span>
+        <span class="user-lang-name">${user.langName}</span>
       </li>
     `;
     el.addEventListener("click", () => {
