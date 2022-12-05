@@ -9,6 +9,7 @@ window.addEventListener("load", async () => {
     {
       name: "Alexander P",
       lang: _ => "clike",
+      langName: "C++",
       solutionUrl: (day, part) => {
         return `https://raw.githubusercontent.com/Zeldacrafter/CompProg-Solutions/master/AdventOfCode/${year}/${day + 1}/${part + 1}.cc`
       }
@@ -16,6 +17,7 @@ window.addEventListener("load", async () => {
     {
       name: "I3J03RN",
       lang: _ => "clike",
+      langName: "C++",
       solutionUrl: (day, part) => {
         return `https://raw.githubusercontent.com/I3J03RN/ProgrammingChallenges/master/AoC/${year}/${day + 1}.cc`
       }
@@ -23,6 +25,7 @@ window.addEventListener("load", async () => {
     {
       name: "Melf",
       lang: _ => "haskell",
+      langName: "Haskell",
       solutionUrl: (day, part) => {
         const _day = (day + 1).toString().padStart(2, "0");
         const _part = ["A", "B"][part];
@@ -32,6 +35,7 @@ window.addEventListener("load", async () => {
     {
       name: "fwcd",
       lang: day => fwcdPaths[day]?.lang,
+      langName: fwcdPaths[day]?.lang,
       encoding: day => fwcdPaths[day]?.encoding,
       solutionUrl: (day, part) => {
         const path = fwcdPaths[day]?.path;
@@ -41,6 +45,7 @@ window.addEventListener("load", async () => {
     {
       name: "xtay2",
       lang: _ => "java",
+      langName: "Java",
       solutionUrl: (day, part) => {
         const _day = (day + 1).toString().padStart(2, "0");
         return `https://raw.githubusercontent.com/xtay2/AdventOfCode/main/src/year${year}/day${_day}/Task_${["A", "B"][part]}.java`
@@ -49,11 +54,13 @@ window.addEventListener("load", async () => {
     {
       name: "tuhhy",
       lang: _ => "python",
+      langName: "Python",
       solutionUrl: (day, part) => `https://raw.githubusercontent.com/tuhhy/aoc/master/Day${day + 1}/Task${["A", "B"][part]}.py`
     },
     {
       name: "Yorik Hansen",
       lang: _ => "python",
+      langName: "Python",
       solutionUrl: (day, part) => {
         const _day = (day + 1).toString().padStart(2, "0");
         return `https://raw.githubusercontent.com/YorikHansen/AdventOfCode/main/${year}/day${_day}/part${part + 1}.py`
@@ -62,6 +69,7 @@ window.addEventListener("load", async () => {
     {
       name: "Skgland",
       lang: _ => "rust",
+      langName: "Rust",
       solutionUrl: (day, _part) => {
         const _day = (day + 1).toString().padStart(2, "0");
         return `https://raw.githubusercontent.com/Skgland/Advent-of-Code/main/year${year}/src/day${_day}.rs`
@@ -70,6 +78,7 @@ window.addEventListener("load", async () => {
     {
       name: "Estugon",
       lang: day => estgPaths[day]?.lang,
+      langName: estgPaths[day]?.lang,
       solutionUrl: (day, part) => {
         const path = estgPaths[day]?.path;
         return path ? `https://raw.githubusercontent.com/estugon/advent-of-code-${year}/main/${path}` : null;
@@ -78,11 +87,13 @@ window.addEventListener("load", async () => {
     {
       name: "Dormanil",
       lang: _ => "fsharp",
+      langName: "F#",
       solutionUrl: (day, _part) => `https://raw.githubusercontent.com/Dormanil/Advent-of-Code/${year}/Dec${day + 1}/Program.fs`
     },
     {
       name: "b3z",
       lang: _ => "python",
+      langName: "Python",
       solutionUrl: (day, part) => {
         const _day = (day + 1).toString().padStart(2, "0");
         return `https://raw.githubusercontent.com/b3z/aoc/master/${year}/${_day}/${part + 1}.py`
@@ -91,11 +102,13 @@ window.addEventListener("load", async () => {
     {
       name: "Dobiko",
       lang: _ => "clike",
+      langName: "C#",
       solutionUrl: (day, _part) => `https://raw.githubusercontent.com/jnccd/AdventOfCode/main/Dec${day + 1}/Program.cs`
     },
     {
       name: "H1tchhiker",
       lang: _ => "python",
+      langName: "Python",
       solutionUrl: (day, part) => {
         const _day = (day + 1).toString().padStart(2, "0");
         return `https://raw.githubusercontent.com/n00on/AdventOfCode/main/${year}/${_day}/day${_day}.py`
@@ -104,6 +117,7 @@ window.addEventListener("load", async () => {
     {
       name: "H1ghBre4k3r",
       lang: _ => "rust",
+      langName: "Rust",
       solutionUrl: (day, _) => {
         const _day = (day + 1).toString().padStart(2, "0");
         return `https://raw.githubusercontent.com/H1ghBre4k3r/aoc-${year}/main/src/day_${_day}.rs`
@@ -112,12 +126,14 @@ window.addEventListener("load", async () => {
     {
       name: "Zihark",
       lang: _ => "haskell",
+      langName: "Haskell",
       solutionUrl: (day, part) =>
       `https://raw.githubusercontent.com/Ziharrk/aoc${year}/main/src/Day${day + 1}.hs`
     },
     {
       name: "sebfisch",
       lang: _ => "java",
+      langName: "Java",
       solutionUrl: (day, part) => {
         const _day = (day + 1).toString().padStart(2, "0");
         return `https://raw.githubusercontent.com/sebfisch/AdventOfCode/latest/year${year}/day${_day}/Part${part+1}.java`
@@ -165,7 +181,7 @@ window.addEventListener("load", async () => {
   users.forEach((user, index) => {
     const el = document.createElement("li");
     el.classList.add("list-group-item");
-    el.textContent = user.name;
+    el.textContent = user.name + "   [" + user.langName + "]";
     el.addEventListener("click", () => {
       state.index = index;
       document.querySelector(".list-group-item.active").classList.remove("active");
