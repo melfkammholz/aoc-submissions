@@ -114,6 +114,14 @@ window.addEventListener("load", async () => {
       lang: _ => "haskell",
       solutionUrl: (day, part) =>
       `https://raw.githubusercontent.com/Ziharrk/aoc${year}/main/src/Day${day + 1}.hs`
+    },
+    {
+      name: "sebfisch",
+      lang: _ => "java",
+      solutionUrl: (day, part) => {
+        const _day = (day + 1).toString().padStart(2, "0");
+        return `https://raw.githubusercontent.com/sebfisch/AdventOfCode/latest/year${year}/day${_day}/Part${part+1}.java`
+      }
     }
   ];
 
