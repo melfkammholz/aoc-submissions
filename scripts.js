@@ -160,7 +160,7 @@ window.addEventListener("load", async () => {
       lang: _ => "python",
       langName: "Python",
       solutionUrl: (day, part) =>
-        `https://raw.githubusercontent.com/Felioh/AdventOfCode/${day}/part${part}.py`
+        `https://raw.githubusercontent.com/Felioh/AdventOfCode/main/${day + 1}/part${part + 1}.py`
     }
   ];
 
