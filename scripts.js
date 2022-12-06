@@ -154,6 +154,13 @@ window.addEventListener("load", async () => {
       langName: "Haskell",
       solutionUrl: (day, _part) =>
         `https://raw.githubusercontent.com/maclement/advent-of-code-${year}/main/Haskell/Day${day + 1}/A.hs`
+    },
+    {
+      name: "Felioh",
+      lang: _ => "python",
+      langName: "Python",
+      solutionUrl: (day, part) =>
+        `https://raw.githubusercontent.com/Felioh/AdventOfCode/${day}/part${part}.py`
     }
   ];
 
