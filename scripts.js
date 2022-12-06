@@ -268,7 +268,6 @@ window.addEventListener("load", async () => {
   function selectUserByIndex(index) {
       state.index = index;
       const el = document.querySelector(`#users .list-group-item:nth-of-type(${index + 1})`);
-    console.log(el);
       document.querySelector(".list-group-item.active").classList.remove("active");
       el.classList.add("active");
       loadSolution(users[state.index], state.day, state.part);
