@@ -1,6 +1,6 @@
 window.addEventListener("load", async () => {
-  const fwcdPaths = year => await (await fetch(`https://raw.githubusercontent.com/fwcd/advent-of-code-${year}/main/paths.json`)).json();
-  const estgPaths = year => await (await fetch(`https://raw.githubusercontent.com/estugon/advent-of-code-${year}/main/paths.json`)).json();
+  const fwcdPaths = year => {await (await fetch(`https://raw.githubusercontent.com/fwcd/advent-of-code-${year}/main/paths.json`)).json()};
+  const estgPaths = year => {await (await fetch(`https://raw.githubusercontent.com/estugon/advent-of-code-${year}/main/paths.json`)).json()};
 
   const users = [
     {
