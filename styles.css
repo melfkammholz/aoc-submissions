@@ -1,9 +1,18 @@
-.nav, #users {
+.nav {
   position: sticky;
+}
+
+#left {
+  position: sticky;
+  top: 1em;
+  max-height: calc(100vh - 2em);
+  height: 100%;
+  display: grid;
 }
 
 #users {
   top: 1em;
+  overflow-y: scroll;
 }
 
 .nav {
