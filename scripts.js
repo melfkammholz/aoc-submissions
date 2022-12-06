@@ -147,6 +147,13 @@ window.addEventListener("load", async () => {
         const _day = (day + 1).toString().padStart(2, "0");
         return `https://raw.githubusercontent.com/hendrick404/advent-of-code-${year}/main/day${_day}/day${_day}.py`;
       }
+    },
+    {
+      name: "maclement",
+      lang: _ => "haskell",
+      langName: "Haskell",
+      solutionUrl: (day, _part) =>
+        `https://raw.githubusercontent.com/maclement/advent-of-code-${year}/main/Haskell/Day${day + 1}/A.hs`
     }
   ];
 
