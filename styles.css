@@ -32,6 +32,8 @@
 
   .nav {
     margin-top: 0;
+    flex-wrap: nowrap;
+    overflow: scroll;
   }
 
   .user-name {
