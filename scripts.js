@@ -164,6 +164,9 @@ window.addEventListener("load", async () => {
     }
   ];
 
+  users.sort((a, b) => a.name.localeCompare(b.name));
+  users.sort((a, b) => a.langName.localeCompare(b.langName));
+
   const clamp = (min, max, val) => Math.min(max, Math.max(val, min));
 
   const days = new Date(clamp(new Date(`${year}-12-01`).valueOf(), new Date(`${year}-12-25`).valueOf(), Date.now())).getDate();
@@ -208,6 +211,41 @@ window.addEventListener("load", async () => {
     return el.children[0];
   }
 
+  function selectUserByIndex(index) {
+      state.index = index;
+      const el = document.querySelector(`#users .list-group-item:nth-of-type(${index + 1})`);
+    console.log(el);
+      document.querySelector(".list-group-item.active").classList.remove("active");
+      el.classList.add("active");
+      loadSolution(users[state.index], state.day, state.part);
+  }
+
+  function selectDay(day) {
+      state.day = day;  
+      const el = document.querySelectorAll(`.nav .day`)[day];
+      document.querySelector(".day.active").classList.remove("active");
+      el.classList.add("active");
+      loadSolution(users[state.index], state.day, state.part);
+  }
+
+  function selectPart(part) {
+      state.part = part;
+      const el = document.querySelector(".part:not(.active)");
+      document.querySelector(".part.active").classList.remove("active");
+      el.classList.add("active");
+      loadSolution(users[state.index], state.day, state.part);
+  }
+
+  const mod = (x, m) => (x % m + m) % m;
+
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "w") selectUserByIndex(mod(state.index - 1, users.length));
+    else if (event.key === "s") selectUserByIndex(mod(state.index + 1, users.length));
+    else if (event.key === "a") selectDay(mod(state.day - 1, days));
+    else if (event.key === "d") selectDay(mod(state.day + 1, days));
+    else if (event.key === "q") selectPart((state.part + 1) % 2);
+  });
+
   users.forEach((user, index) => {
     const el = render`
       <li class="list-group-item">
@@ -216,20 +254,14 @@ window.addEventListener("load", async () => {
       </li>
     `;
     el.addEventListener("click", () => {
-      state.index = index;
-      document.querySelector(".list-group-item.active").classList.remove("active");
-      el.classList.add("active");
-      loadSolution(users[state.index], state.day, state.part);
+      selectUserByIndex(index);
     });
     document.getElementById("users").appendChild(el);
   });
 
   Array.from(document.querySelectorAll(".part")).forEach((el, i) => {
     el.addEventListener("click", () => {
-      state.part = i;
-      document.querySelector(".part.active").classList.remove("active");
-      el.classList.add("active");
-      loadSolution(users[state.index], state.day, state.part);
+      selectPart(i);
     });
   });
 
@@ -241,10 +273,7 @@ window.addEventListener("load", async () => {
     aEl.classList.add("day");
     aEl.textContent = i + 1;
     aEl.addEventListener("click", () => {
-      state.day = i;
-      document.querySelector(".day.active").classList.remove("active");
-      aEl.classList.add("active");
-      loadSolution(users[state.index], state.day, state.part);
+      selectDay(i);
     });
     el.appendChild(aEl);
     document.querySelector(".nav").appendChild(el);
