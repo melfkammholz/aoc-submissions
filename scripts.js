@@ -1,6 +1,6 @@
 window.addEventListener("load", async () => {
-  const fwcdPaths = year => {await (await fetch(`https://raw.githubusercontent.com/fwcd/advent-of-code-${year}/main/paths.json`)).json()};
-  const estgPaths = year => {await (await fetch(`https://raw.githubusercontent.com/estugon/advent-of-code-${year}/main/paths.json`)).json()};
+  //const fwcdPaths = year => {await (await fetch(`https://raw.githubusercontent.com/fwcd/advent-of-code-${year}/main/paths.json`)).json()};
+  //const estgPaths = year => {await (await fetch(`https://raw.githubusercontent.com/estugon/advent-of-code-${year}/main/paths.json`)).json()};
 
   const users = [
     {
@@ -31,7 +31,7 @@ window.addEventListener("load", async () => {
     },
     {
       name: "fwcd",
-      lang: (year, day) => fwcdPaths(year)[day]?.lang,
+      lang: (year, day) => "",//fwcdPaths(year)[day]?.lang,
       langName: "Mixed",
       encoding: day => fwcdPaths[day]?.encoding,
       solutionUrl: (year, day, part) => {
@@ -74,7 +74,7 @@ window.addEventListener("load", async () => {
     },
     {
       name: "Estugon",
-      lang: (year, day) => estgPaths(year)[day]?.lang,
+      lang: (year, day) => "",//estgPaths(year)[day]?.lang,
       langName: "Mixed",
       solutionUrl: (year, day, part) => {
         const path = estgPaths[day]?.path;
