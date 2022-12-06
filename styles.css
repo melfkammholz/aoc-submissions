@@ -59,6 +59,10 @@
     display: none;
   }
 
+  #left {
+    grid-template-rows: none;
+  }
+
   #users {
     flex-direction: row;
     overflow: scroll;
