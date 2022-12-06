@@ -60,7 +60,7 @@
   }
 
   #left {
-    grid-template-rows: none;
+    grid-template-rows: unset;
   }
 
   #users {
