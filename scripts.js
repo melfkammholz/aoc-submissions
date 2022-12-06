@@ -205,7 +205,10 @@ window.addEventListener("load", async () => {
     const el = render`
       <li class="list-group-item">
         <span class="user-name">${user.name}</span>
-        <span class="user-lang-name">${user.langName}</span>
+        <div>
+          <span class="user-lang-name">${user.langName}</span>
+          <img class="lang-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${user.langName.toLowerCase()}/${user.langName.toLowerCase()}-original.svg" />
+        </div>
       </li>
     `;
     el.addEventListener("click", () => {

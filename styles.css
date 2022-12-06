@@ -57,3 +57,9 @@
   }
 }
 
+.lang-icon {
+  height: 1em;
+  width: auto;
+  display: inline-block;
+  margin-right: 0px;
+}
