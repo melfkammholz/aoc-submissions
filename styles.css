@@ -42,11 +42,11 @@
 }
 
 #keyboard .key {
-  background: #eee;
-  padding: .125em;
+  background: #f0f0f0;
+  padding: .125em .2em;
   font-family: monospace;
   border-radius: .125em;
-  border: 1px solid #dedede;
+  border: 1px solid #b0b0b0;
   margin: .25em;
   line-height: 1;
   display: inline-block;
@@ -88,6 +88,10 @@
     background-color: #2d2d2d;
     color: white;
     border-color: rgba(255, 255, 255, .125);
+  }
+
+  .key {
+    color: black;
   }
 
   .token {
