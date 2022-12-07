@@ -1,158 +1,227 @@
+/** Generates solution urls for GitHub. */
+function gitHubUrls({user, repo, branch = (year => "main"), path}) {
+	return {
+		solutionUrl: (year, day, part) => `https://raw.githubusercontent.com/${user}/${repo(year)}/${branch(year)}/${path(year, day, part)}`,
+		solutionWebUrl: (year, day, part) => `https://github.com/${user}/${repo(year)}/blob/${branch(year)}/${path(year, day, part)}`,
+	};
+}
+
+/** Pads the given number with the given number of zeros. */
+function pad(n, zeros) {
+	return `${n}`.padStart(zeros, "0");
+}
+
 window.addEventListener("load", async () => {
-	//const fwcdPaths = year => {await (await fetch(`https://raw.githubusercontent.com/fwcd/advent-of-code-${year}/main/paths.json`)).json()};
-	//const estgPaths = year => {await (await fetch(`https://raw.githubusercontent.com/estugon/advent-of-code-${year}/main/paths.json`)).json()};
+
+	const fwcdPaths = async year => {
+		return await (await fetch(`https://raw.githubusercontent.com/fwcd/advent-of-code-${year}/main/paths.json`)).json();
+	}
+	const estgPaths = async year => {
+		return await (await fetch(`https://raw.githubusercontent.com/estugon/advent-of-code-${year}/main/paths.json`)).json();
+	}
 
 	const users = [
 		{
 			name: "Alexander P",
 			lang: _ => "clike",
 			langName: "C++",
-			solutionUrl: (year, day, part) => {
-				return `https://raw.githubusercontent.com/Zeldacrafter/CompProg-Solutions/master/AdventOfCode/${year}/${day + 1}/${part + 1}.cc`
-			}
+			...gitHubUrls({
+				user: "Zeldacrafter",
+				repo: _ => "CompProg-Solutions",
+				branch: _ => "master",
+				path: (year, day, part) => `AdventOfCode/${year}/${day + 1}/${part + 1}.cc`
+			})
 		},
 		{
 			name: "I3J03RN",
 			lang: _ => "clike",
 			langName: "C++",
-			solutionUrl: (year, day, part) => {
-				return `https://raw.githubusercontent.com/I3J03RN/ProgrammingChallenges/master/AoC/${year}/${day + 1}.cc`
-			}
+			...gitHubUrls({
+				user: "I3J03RN",
+				repo: _ => "ProgrammingChallenges",
+				branch: _ => "master",
+				path: (year, day, part) => `AoC/${year}/${day + 1}.cc`
+			})
 		},
 		{
 			name: "Melf",
 			lang: _ => "haskell",
 			langName: "Haskell",
-			solutionUrl: (year, day, part) => {
-				const _day = (day + 1).toString().padStart(2, "0");
-				const _part = ["A", "B"][part];
-				return `https://raw.githubusercontent.com/melfkammholz/aoc${year % 100}/main/day${_day}/${_part}.hs`
-			}
+			...gitHubUrls({
+				user: "melfkammholz",
+				repo: year => `aoc${year % 100}`,
+				path: (year, day, part) => `day${pad(day + 1, 2)}/${["A", "B"][part]}.hs`
+			})
 		},
-		// {
-		// 	name: "fwcd",
-		// 	lang: (year, day) => //fwcdPaths[day]?.lang,
-		// 	langName: "Mixed",
-		// 	encoding: day => fwcdPaths[day]?.encoding,
-		// 	solutionUrl: (year, day, part) => {
-		// 		const path = fwcdPaths[day]?.path;
-		// 		return path ? `https://raw.githubusercontent.com/fwcd/advent-of-code-${year}/main/${path}` : null;
-		// 	}
-		// },
+		{
+			name: "fwcd",
+			lang: day => fwcdPaths[day]?.lang,
+			langName: "Mixed",
+			encoding: day => fwcdPaths[day]?.encoding,
+			...gitHubUrls({
+				user: "fwcd",
+				repo: year => `advent-of-code-${year}`,
+				path: (year, day, part) => fwcdPaths[day]?.path
+			})
+		},
 		{
 			name: "xtay2",
 			lang: _ => "java",
 			langName: "Java",
-			solutionUrl: (year, day, part) => {
-				const _day = (day + 1).toString().padStart(2, "0");
-				return `https://raw.githubusercontent.com/xtay2/AdventOfCode/main/src/year${year}/day${_day}/Task_${["A", "B"][part]}.java`
-			}
+			...gitHubUrls({
+				user: "xtay2",
+				repo: _ => "AdventOfCode",
+				path: (year, day, part) => `src/year${year}/day${pad(day + 1, 2)}/Task_${["A", "B"][part]}.java`
+			})
 		},
 		{
 			name: "tuhhy",
 			lang: _ => "python",
 			langName: "Python",
-			solutionUrl: (year, day, part) => `https://raw.githubusercontent.com/tuhhy/aoc/master/Day${day + 1}/Task${["A", "B"][part]}.py`
+			...gitHubUrls({
+				user: "tuhhy",
+				repo: _ => "aoc",
+				branch: _ => "master",
+				path: (year, day, part) => `Day${day + 1}/Task${["A", "B"][part]}.py`
+			})
 		},
 		{
 			name: "Yorik Hansen",
 			lang: _ => "python",
 			langName: "Python",
-			solutionUrl: (year, day, part) => {
-				const _day = (day + 1).toString().padStart(2, "0");
-				return `https://raw.githubusercontent.com/YorikHansen/AdventOfCode/main/${year}/day${_day}/part${part + 1}.py`
-			}
+			...gitHubUrls({
+				user: "YorikHansen",
+				repo: _ => "AdventOfCode",
+				path: (year, day, part) => `${year}/day${pad(day + 1, 2)}/part${part + 1}.py`
+			})
 		},
 		{
 			name: "Skgland",
 			lang: _ => "rust",
 			langName: "Rust",
-			solutionUrl: (year, day, _part) => {
-				const _day = (day + 1).toString().padStart(2, "0");
-				return `https://raw.githubusercontent.com/Skgland/Advent-of-Code/main/year${year}/src/day${_day}.rs`
-			}
+			...gitHubUrls({
+				user: "Skgland",
+				repo: _ => "Advent-of-Code",
+				path: (year, day, part) => `year${year}/src/day${pad(day + 1, 2)}.rs`
+			})
 		},
-		// {
-		// 	name: "Estugon",
-		// 	lang: (year, day) => estgPaths[day]?.lang,
-		// 	langName: "Mixed",
-		// 	solutionUrl: (year, day, part) => {
-		// 		const path = estgPaths[day]?.path;
-		// 		return path ? `https://raw.githubusercontent.com/estugon/advent-of-code-${year}/main/${path}` : null;
-		// 	}
-		// },
+		{
+			name: "Estugon",
+			lang: day => estgPaths[day]?.lang,
+			langName: "Mixed",
+			...gitHubUrls({
+				user: "Estugon",
+				repo: year => `advent-of-code-${year}`,
+				path: (year, day, part) => estgPaths[day]?.path
+			})
+		},
 		{
 			name: "Dormanil",
 			lang: _ => "fsharp",
 			langName: "F#",
-			solutionUrl: (year, day, _part) => `https://raw.githubusercontent.com/Dormanil/Advent-of-Code/${year}/Dec${day + 1}/Program.fs`
+			...gitHubUrls({
+				user: "Dormanil",
+				repo: _ => "Advent-of-Code",
+				branch: year => `${year}`,
+				path: (year, day, part) => `Dec${day + 1}/Program.fs`
+			})
 		},
 		{
 			name: "b3z",
 			lang: _ => "python",
 			langName: "Python",
-			solutionUrl: (year, day, part) => {
-				const _day = (day + 1).toString().padStart(2, "0");
-				return `https://raw.githubusercontent.com/b3z/aoc/master/${year}/${_day}/${part + 1}.py`
-			}
+			...gitHubUrls({
+				user: "b3z",
+				repo: _ => "aoc",
+				branch: _ => "master",
+				path: (year, day, part) => `${year}/${pad(day + 1, 2)}/${part + 1}.py`
+			})
 		},
 		{
 			name: "Dobiko",
 			lang: _ => "clike",
 			langName: "C#",
-			solutionUrl: (year, day, _part) => `https://raw.githubusercontent.com/jnccd/AdventOfCode/main/Dec${day + 1}/Program.cs`
+			...gitHubUrls({
+				user: "jnccd",
+				repo: _ => "AdventOfCode",
+				path: (year, day, part) => `Dec${day + 1}/Program.cs`
+			})
 		},
 		{
 			name: "H1tchhiker",
 			lang: _ => "python",
 			langName: "Python",
-			solutionUrl: (year, day, part) => {
-				const _day = (day + 1).toString().padStart(2, "0");
-				return `https://raw.githubusercontent.com/n00on/AdventOfCode/main/${year}/${_day}/day${_day}.py`
-			}
+			...gitHubUrls({
+				user: "n00on",
+				repo: _ => "AdventOfCode",
+				path: (year, day, part) => `${year}/${pad(day + 1, 2)}/day${pad(day + 1, 2)}.py`
+			})
 		},
 		{
 			name: "H1ghBre4k3r",
 			lang: _ => "rust",
 			langName: "Rust",
-			solutionUrl: (year, day, _) => {
-				const _day = (day + 1).toString().padStart(2, "0");
-				return `https://raw.githubusercontent.com/H1ghBre4k3r/aoc-${year}/main/src/day_${_day}.rs`
-			}
+			...gitHubUrls({
+				user: "H1ghBre4k3r",
+				repo: year => `aoc-${year}`,
+				path: (year, day, part) => `src/day_${pad(day + 1, 2).rs}`
+			})
 		},
 		{
 			name: "Zihark",
 			lang: _ => "haskell",
 			langName: "Haskell",
-			solutionUrl: (year, day, part) =>
-				`https://raw.githubusercontent.com/Ziharrk/aoc${year}/main/src/Day${day + 1}.hs`
+			...gitHubUrls({
+				user: "Ziharrk",
+				repo: year => `aoc${year}`,
+				path: (year, day, part) => `src/Day${day + 1}.hs`
+			})
 		},
 		{
 			name: "sebfisch",
 			lang: _ => "java",
 			langName: "Java",
-			solutionUrl: (year, day, part) => {
-				const _day = (day + 1).toString().padStart(2, "0");
-				return `https://raw.githubusercontent.com/sebfisch/AdventOfCode/latest/year${year}/day${_day}/Part${part + 1}.java`
-			}
+			...gitHubUrls({
+				user: "sebfisch",
+				repo: _ => "AdventOfCode",
+				branch: _ => "latest",
+				path: (year, day, part) => `year${year}/day${pad(day + 1, 2)}/Part${part + 1}.java`
+			})
 		},
 		{
 			name: "hendrick404",
 			lang: _ => "python",
 			langName: "Python",
-			solutionUrl: (year, day, _part) => {
-				const _day = (day + 1).toString().padStart(2, "0");
-				return `https://raw.githubusercontent.com/hendrick404/advent-of-code-${year}/main/day${_day}/day${_day}.py`;
-			}
+			...gitHubUrls({
+				user: "hendrick404",
+				repo: year => `advent-of-code-${year}`,
+				path: (year, day, part) => `day${pad(day + 1, 2)}/day${pad(day + 1, 2)}.py`
+			})
 		},
 		{
 			name: "maclement",
 			lang: _ => "haskell",
 			langName: "Haskell",
-			solutionUrl: (year, day, _part) =>
-				`https://raw.githubusercontent.com/maclement/advent-of-code-${year}/main/Haskell/Day${day + 1}/A.hs`
+			...gitHubUrls({
+				user: "maclement",
+				repo: year => `advent-of-code-${year}`,
+				path: (year, day, part) => `Haskell/Day${day + 1}/A.hs`
+			})
+		},
+		{
+			name: "Felioh",
+			lang: _ => "python",
+			langName: "Python",
+			...gitHubUrls({
+				user: "Felioh",
+				repo: _ => "AdventOfCode",
+				path: (year, day, part) => `${day + 1}/part${part + 1}.py`
+			})
 		}
 	];
+
+	users.sort((a, b) => a.name.localeCompare(b.name));
+	//users.sort((a, b) => a.langName.localeCompare(b.langName));
 
 	const currentYear = new Date().getFullYear();
 	const state = {
@@ -171,9 +240,8 @@ window.addEventListener("load", async () => {
 		const decoder = new TextDecoder(encoding);
 		try {
 			const result = url ? await fetch(url) : null;
-			if (!result.ok) {
+			if (!result.ok)
 				throw new Error("No solution yet");
-			}
 			const buffer = await result.arrayBuffer();
 			const code = decoder.decode(buffer);
 			await Prism.plugins.autoloader.loadLanguages(
@@ -190,12 +258,49 @@ window.addEventListener("load", async () => {
 		document.getElementById("preview").appendChild(preEl);
 	}
 
+	function maxDay(selYear) {
+		return selYear < currentYear ? 25 : Math.min(new Date(Date.now()).getDate(), 25);
+	}
+
 	function render(strings, ...values) {
 		const html = String.raw({raw: strings}, ...values);
 		const el = document.createElement('div');
 		el.innerHTML = html;
 		return el.children[0];
 	}
+
+	function selectUserByIndex(index) {
+		document.querySelector(`#users .list-group-item:nth-of-type(${index + 1})`).click();
+	}
+
+	function selectYear(year) {
+		document.querySelectorAll(`.nav .year`)[year].click()
+	}
+
+	function selectDay(day) {
+		document.querySelectorAll(`.nav .day`)[day].click();
+	}
+
+	function selectPart(part) {
+		state.part = part;
+		const el = document.querySelector(".part:not(.active)");
+		document.querySelector(".part.active").classList.remove("active");
+		el.classList.add("active");
+		loadSolution(users[state.index], state.year, state.day, state.part);
+	}
+
+	const mod = (x, m) => (x % m + m) % m;
+
+
+	window.addEventListener("keydown", (event) => {
+		if (event.key === "w") selectUserByIndex(mod(state.index - 1, users.length));
+		else if (event.key === "s") selectUserByIndex(mod(state.index + 1, users.length));
+		else if (event.key === "A") selectYear(mod(state.year - 1 - 2015, currentYear - 2014));
+		else if (event.key === "D") selectYear(mod(state.year + 1 - 2015, currentYear - 2014));
+		else if (event.key === "a") selectDay(mod(state.day - 1, maxDay(state.year)));
+		else if (event.key === "d") selectDay(mod(state.day + 1, maxDay(state.year)));
+		else if (event.key === "q") selectPart((state.part + 1) % 2);
+	});
 
 	users.forEach((user, index) => {
 		const el = render`
