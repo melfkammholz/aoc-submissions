@@ -291,14 +291,13 @@ window.addEventListener("load", async () => {
 
 	const mod = (x, m) => (x % m + m) % m;
 
-
 	window.addEventListener("keydown", (event) => {
 		if (event.key === "w") selectUserByIndex(mod(state.index - 1, users.length));
-		else if (event.key === "s") selectUserByIndex(mod(state.index + 1, users.length));
-		else if (event.key === "A") selectYear(mod(state.year - 1 - 2015, currentYear - 2014));
-		else if (event.key === "D") selectYear(mod(state.year + 1 - 2015, currentYear - 2014));
-		else if (event.key === "a") selectDay(mod(state.day - 1, maxDay(state.year)));
-		else if (event.key === "d") selectDay(mod(state.day + 1, maxDay(state.year)));
+		else if (event.key === "s" || event.key === "j") selectUserByIndex(mod(state.index + 1, users.length));
+		else if (event.key === "A" || event.key === "H") selectYear(mod(state.year - 1 - 2015, currentYear - 2014));
+		else if (event.key === "D" || event.key === "L") selectYear(mod(state.year + 1 - 2015, currentYear - 2014));
+		else if (event.key === "a" || event.key === "h") selectDay(mod(state.day - 1, maxDay(state.year)));
+		else if (event.key === "d" || event.key === "l") selectDay(mod(state.day + 1, maxDay(state.year)));
 		else if (event.key === "q") selectPart((state.part + 1) % 2);
 	});
 
