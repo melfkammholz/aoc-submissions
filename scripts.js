@@ -156,7 +156,7 @@ window.addEventListener("load", async () => {
 
 	const currentYear = new Date().getFullYear();
 	const state = {
-		day: new Date(Date.now()).getDate(),
+		day: new Date(Date.now()).getDate() - 1,
 		part: 0,
 		year: currentYear,
 		index: 0
