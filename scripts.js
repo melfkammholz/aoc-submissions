@@ -116,7 +116,7 @@ window.addEventListener("load", async () => {
     {
       name: "Dormanil",
       lang: _ => "fsharp",
-      langName: "F#",
+      langName: "C",
       ...gitHubUrls({
         user: "Dormanil",
         repo: "Advent-of-Code",
@@ -138,7 +138,7 @@ window.addEventListener("load", async () => {
     {
       name: "Dobiko",
       lang: _ => "clike",
-      langName: "C#",
+      langName: "C",
       ...gitHubUrls({
         user: "jnccd",
         repo: "AdventOfCode",
@@ -303,10 +303,7 @@ window.addEventListener("load", async () => {
     const el = render`
       <li class="list-group-item">
         <span class="user-name">${user.name}</span>
-        <div>
-          <span class="user-lang-name">${user.langName}</span>
-          <img class="lang-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${user.langName.toLowerCase()}/${user.langName.toLowerCase()}-original.svg" />
-        </div>
+        <img class="lang-icon" src="assets/${user.langName.toLowerCase()}.svg" alt="${user.langName}" />
       </li>
     `;
     el.addEventListener("click", () => {
