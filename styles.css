@@ -1,97 +1,97 @@
 .nav {
-	position: sticky;
+  position: sticky;
 }
 
 #left {
-	position: sticky;
-	top: 1em;
-	max-height: calc(100vh - 2em);
-	height: 100%;
-	display: grid;
-	grid-template-rows: minmax(0, 1fr) 150px;
+  position: sticky;
+  top: 1em;
+  max-height: calc(100vh - 2em);
+  height: 100%;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) 150px;
 }
 
 #users {
-	top: 1em;
-	overflow-y: scroll;
+  top: 1em;
+  overflow-y: scroll;
 }
 
 .nav {
-	top: 0px;
-	background-color: white;
-	padding: 1em 0;
-	margin-top: -1em;
-	z-index: 1;
+  top: 0px;
+  background-color: white;
+  padding: 1em 0;
+  margin-top: -1em;
+  z-index: 1;
 }
 
 .list-group-item, .nav-link {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 #users .list-group-item {
-	display: flex;
-	justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 #keyboard {
-	margin: 1em 0 0 1em;
+  margin: 1em 0 0 1em;
 }
 
 #keyboard h5 {
-	font-size: 1.1em;
+  font-size: 1.1em;
 }
 
 #keyboard .key {
-	background: #393939;
-	padding: .125em;
-	font-family: monospace;
-	border-radius: .125em;
-	border: 1px solid #2c2c2c;
-	margin: .25em;
-	line-height: 1;
-	display: inline-block;
+  background: #393939;
+  padding: .125em;
+  font-family: monospace;
+  border-radius: .125em;
+  border: 1px solid #2c2c2c;
+  margin: .25em;
+  line-height: 1;
+  display: inline-block;
 }
 
 
 /* X-Small devices (e.g. portrait phones) */
 @media (max-width: 576px) {
-	#keyboard {
-		display: none;
-	}
+  #keyboard {
+    display: none;
+  }
 
-	#left {
-		grid-template-rows: unset;
-	}
+  #left {
+    grid-template-rows: unset;
+  }
 
-	#users {
-		flex-direction: row;
-		overflow: scroll;
-	}
+  #users {
+    flex-direction: row;
+    overflow: scroll;
+  }
 
-	.nav {
-		margin-top: 0;
-		flex-wrap: nowrap;
-		overflow: scroll;
-	}
+  .nav {
+    margin-top: 0;
+    flex-wrap: nowrap;
+    overflow: scroll;
+  }
 
-	.user-name {
-		white-space: nowrap;
-	}
+  .user-name {
+    white-space: nowrap;
+  }
 
-	.user-lang-name {
-		display: none;
-	}
+  .user-lang-name {
+    display: none;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
-	body, .nav, .list-group-item {
-		background-color: #2d2d2d;
-		color: white;
-		border-color: rgba(255, 255, 255, .125);
-	}
+  body, .nav, .list-group-item {
+    background-color: #2d2d2d;
+    color: white;
+    border-color: rgba(255, 255, 255, .125);
+  }
 
-	.token {
-		background: none !important;
-	}
+  .token {
+    background: none !important;
+  }
 }
 
