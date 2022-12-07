@@ -292,10 +292,10 @@ window.addEventListener("load", async () => {
   const mod = (x, m) => (x % m + m) % m;
 
   window.addEventListener("keydown", (event) => {
-    if (event.key === "w") selectUserByIndex(mod(state.index - 1, users.length));
-    else if (event.key === "s") selectUserByIndex(mod(state.index + 1, users.length));
-    else if (event.key === "a") selectDay(mod(state.day - 1, days));
-    else if (event.key === "d") selectDay(mod(state.day + 1, days));
+    if (event.key === "w" || event.key === "k" ) selectUserByIndex(mod(state.index - 1, users.length));
+    else if (event.key === "s" || event.key === "j") selectUserByIndex(mod(state.index + 1, users.length));
+    else if (event.key === "a" || event.key === "h") selectDay(mod(state.day - 1, days));
+    else if (event.key === "d" || event.key === "l") selectDay(mod(state.day + 1, days));
     else if (event.key === "q") selectPart((state.part + 1) % 2);
   });
 
