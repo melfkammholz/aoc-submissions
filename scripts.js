@@ -266,27 +266,27 @@ window.addEventListener("load", async () => {
   }
 
   function selectUserByIndex(index) {
-      state.index = index;
-      const el = document.querySelector(`#users .list-group-item:nth-of-type(${index + 1})`);
-      document.querySelector(".list-group-item.active").classList.remove("active");
-      el.classList.add("active");
-      loadSolution(users[state.index], state.day, state.part);
+    state.index = index;
+    const el = document.querySelector(`#users .list-group-item:nth-of-type(${index + 1})`);
+    document.querySelector(".list-group-item.active").classList.remove("active");
+    el.classList.add("active");
+    loadSolution(users[state.index], state.day, state.part);
   }
 
   function selectDay(day) {
-      state.day = day;  
-      const el = document.querySelectorAll(`.nav .day`)[day];
-      document.querySelector(".day.active").classList.remove("active");
-      el.classList.add("active");
-      loadSolution(users[state.index], state.day, state.part);
+    state.day = day;  
+    const el = document.querySelectorAll(`.nav .day`)[day];
+    document.querySelector(".day.active").classList.remove("active");
+    el.classList.add("active");
+    loadSolution(users[state.index], state.day, state.part);
   }
 
   function selectPart(part) {
-      state.part = part;
-      const el = document.querySelector(".part:not(.active)");
-      document.querySelector(".part.active").classList.remove("active");
-      el.classList.add("active");
-      loadSolution(users[state.index], state.day, state.part);
+    state.part = part;
+    const el = document.querySelector(".part:not(.active)");
+    document.querySelector(".part.active").classList.remove("active");
+    el.classList.add("active");
+    loadSolution(users[state.index], state.day, state.part);
   }
 
   const mod = (x, m) => (x % m + m) % m;
