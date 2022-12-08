@@ -341,7 +341,7 @@ window.addEventListener("load", async () => {
   document.querySelectorAll(".part")[state.part].classList.add("active");
   document.querySelectorAll(".day")[state.day].classList.add("active");
 
-  loadSolution(users[state.index], state.day, state.part);
+  updateSolution();
 });
 
 if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
