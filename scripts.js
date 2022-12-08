@@ -75,6 +75,16 @@ window.addEventListener("load", async () => {
       })
     },
     {
+      name: "LeifIsStrange",
+      lang: _ => "java",
+      langName: "Java",
+      ...gitHubUrls({
+        user: "LeifIsStrange",
+        repo: year => `AoC${year}`,
+        path: (year, day, part) => `src/day${pad(day + 1, 2)}/Day${pad(day + 1, 2)}.java`
+      })
+    },
+    {
       name: "tuhhy",
       lang: _ => "python",
       langName: "Python",
