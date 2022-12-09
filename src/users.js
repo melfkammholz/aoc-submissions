@@ -150,7 +150,7 @@ export async function loadUsers() {
       ...gitHubUrls({
         user: "H1ghBre4k3r",
         repo: `aoc-${year}`,
-        path: day => `src/day_${pad(day + 1, 2).rs}`
+        path: day => `src/day_${pad(day + 1, 2)}.rs`
       })
     },
     {
