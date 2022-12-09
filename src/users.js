@@ -1,4 +1,5 @@
 import { year, shortYear } from './constants.js';
+import langs from './langs.js';
 import { gitHubUrls, pad } from './utils.js';
 
 /** Loads the list of users. */
@@ -9,8 +10,7 @@ export async function loadUsers() {
   const users = [
     {
       name: "Alexander P",
-      lang: _ => "clike",
-      langName: "C++",
+      ...langs.cpp, 
       ...gitHubUrls({
         user: "Zeldacrafter",
         repo: "CompProg-Solutions",
@@ -20,8 +20,7 @@ export async function loadUsers() {
     },
     {
       name: "I3J03RN",
-      lang: _ => "clike",
-      langName: "C++",
+      ...langs.cpp,
       ...gitHubUrls({
         user: "I3J03RN",
         repo: "ProgrammingChallenges",
@@ -31,8 +30,7 @@ export async function loadUsers() {
     },
     {
       name: "Melf",
-      lang: _ => "haskell",
-      langName: "Haskell",
+      ...langs.haskell,
       ...gitHubUrls({
         user: "melfkammholz",
         repo: `aoc${shortYear}`,
@@ -52,8 +50,7 @@ export async function loadUsers() {
     },
     {
       name: "xtay2",
-      lang: _ => "java",
-      langName: "Java",
+      ...langs.java,
       ...gitHubUrls({
         user: "xtay2",
         repo: "AdventOfCode",
@@ -62,8 +59,7 @@ export async function loadUsers() {
     },
     {
       name: "tuhhy",
-      lang: _ => "python",
-      langName: "Python",
+      ...langs.python,
       ...gitHubUrls({
         user: "tuhhy",
         repo: "aoc",
@@ -73,8 +69,7 @@ export async function loadUsers() {
     },
     {
       name: "Yorik Hansen",
-      lang: _ => "python",
-      langName: "Python",
+      ...langs.python,
       ...gitHubUrls({
         user: "YorikHansen",
         repo: "AdventOfCode",
@@ -83,8 +78,7 @@ export async function loadUsers() {
     },
     {
       name: "Skgland",
-      lang: _ => "rust",
-      langName: "Rust",
+      ...langs.rust,
       ...gitHubUrls({
         user: "Skgland",
         repo: "Advent-of-Code",
@@ -103,8 +97,7 @@ export async function loadUsers() {
     },
     {
       name: "Dormanil",
-      lang: _ => "fsharp",
-      langName: "F#",
+      ...langs.fsharp,
       ...gitHubUrls({
         user: "Dormanil",
         repo: "Advent-of-Code",
@@ -114,8 +107,7 @@ export async function loadUsers() {
     },
     {
       name: "b3z",
-      lang: _ => "python",
-      langName: "Python",
+      ...langs.python,
       ...gitHubUrls({
         user: "b3z",
         repo: "aoc",
@@ -125,8 +117,7 @@ export async function loadUsers() {
     },
     {
       name: "Dobiko",
-      lang: _ => "clike",
-      langName: "C#",
+      ...langs.csharp,
       ...gitHubUrls({
         user: "jnccd",
         repo: "AdventOfCode",
@@ -135,8 +126,7 @@ export async function loadUsers() {
     },
     {
       name: "H1tchhiker",
-      lang: _ => "python",
-      langName: "Python",
+      ...langs.python,
       ...gitHubUrls({
         user: "n00on",
         repo: "AdventOfCode",
@@ -145,18 +135,16 @@ export async function loadUsers() {
     },
     {
       name: "H1ghBre4k3r",
-      lang: _ => "rust",
-      langName: "Rust",
+      ...langs.rust,
       ...gitHubUrls({
         user: "H1ghBre4k3r",
         repo: `aoc-${year}`,
-        path: day => `src/day_${pad(day + 1, 2).rs}`
+        path: day => `src/day_${pad(day + 1, 2)}.rs`
       })
     },
     {
       name: "Zihark",
-      lang: _ => "haskell",
-      langName: "Haskell",
+      ...langs.haskell,
       ...gitHubUrls({
         user: "Ziharrk",
         repo: `aoc${year}`,
@@ -165,8 +153,7 @@ export async function loadUsers() {
     },
     {
       name: "sebfisch",
-      lang: _ => "java",
-      langName: "Java",
+      ...langs.java,
       ...gitHubUrls({
         user: "sebfisch",
         repo: "AdventOfCode",
@@ -176,8 +163,7 @@ export async function loadUsers() {
     },
     {
       name: "hendrick404",
-      lang: _ => "python",
-      langName: "Python",
+      ...langs.python,
       ...gitHubUrls({
         user: "hendrick404",
         repo: `advent-of-code-${year}`,
@@ -186,8 +172,7 @@ export async function loadUsers() {
     },
     {
       name: "maclement",
-      lang: _ => "haskell",
-      langName: "Haskell",
+      ...langs.haskell,
       ...gitHubUrls({
         user: "maclement",
         repo: `advent-of-code-${year}`,
@@ -196,8 +181,7 @@ export async function loadUsers() {
     },
     {
       name: "Felioh",
-      lang: _ => "python",
-      langName: "Python",
+      ...langs.python,
       ...gitHubUrls({
         user: "Felioh",
         repo: "AdventOfCode",
