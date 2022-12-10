@@ -61,7 +61,7 @@ window.addEventListener("load", async () => {
   function updateQueryParams() {
     const params = new URLSearchParams(window.location.search);
     for (const key in state) {
-      params.set(key, state[key]);
+      params.set(key, `${state[key]}`);
     }
     history.pushState(null, "", `${window.location.pathname}?${params}`);
   }
@@ -89,7 +89,7 @@ window.addEventListener("load", async () => {
     const params = new URLSearchParams(window.location.search);
     const loaded = {};
     for (const key in state) {
-      loaded[key] = params.get(key);
+      loaded[key] = parseInt(params.get(key));
     }
     updateState({ ...loaded, updateQuery: false });
   }
