@@ -119,11 +119,11 @@ window.addEventListener("load", async () => {
     document.querySelector(".nav").appendChild(el);
   });
 
-  document.querySelectorAll(".list-group-item")[state.index].classList.add("active");
-  document.querySelectorAll(".part")[state.part].classList.add("active");
-  document.querySelectorAll(".day")[state.day].classList.add("active");
+  selectUserByIndex(state.index);
+  selectPart(state.part);
+  selectDay(state.day);
 
-  loadSolution(users[state.index], state.day, state.part);
+  updateSolution();
 });
 
 if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
