@@ -58,21 +58,39 @@ window.addEventListener("load", async () => {
     activatedEl.classList.add(className);
   }
 
+  function loadStateFromQueryParams() {
+    const params = new URLSearchParams(window.location.search);
+    for (const key in state) {
+      state[key] = params.get(key) ?? state[key];
+    }
+  }
+
+  function updateQueryParams() {
+    const params = new URLSearchParams(window.location.search);
+    for (const key in state) {
+      params.set(key, state[key]);
+    }
+    history.pushState(null, "", `${window.location.pathname}?${params}`);
+  }
+
   function selectUserByIndex(index) {
     state.index = index;
     setActive("#users .list-group-item", index);
+    updateQueryParams();
     updateSolution();
   }
 
   function selectDay(day) {
     state.day = day;  
     setActive(".nav .day", day);
+    updateQueryParams();
     updateSolution();
   }
 
   function selectPart(part) {
     state.part = part;
     setActive(".part", part);
+    updateQueryParams();
     updateSolution();
   }
 
@@ -118,6 +136,8 @@ window.addEventListener("load", async () => {
     el.appendChild(aEl);
     document.querySelector(".nav").appendChild(el);
   });
+
+  loadStateFromQueryParams();
 
   selectUserByIndex(state.index);
   selectPart(state.part);
