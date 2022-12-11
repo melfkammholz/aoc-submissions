@@ -66,18 +66,18 @@ window.addEventListener("load", async () => {
     history.pushState(null, "", `${window.location.pathname}?${params}`);
   }
 
-  function updateState({ index = null, day = null, part = null, updateQuery = true }) {
-    if (index !== null) {
-      state.index = index;
-      setActive("#users .list-group-item", index);
+  function updateState({ index = null, day = null, part = null, updateActive = false, updateQuery = true }) {
+    state.index = index ?? state.index;
+    state.day = day ?? state.day;
+    state.part = part ?? state.part;
+    if (index !== null || updateActive) {
+      setActive("#users .list-group-item", state.index);
     }
-    if (day !== null) {
-      state.day = day;  
-      setActive(".nav .day", day);
+    if (day !== null || updateActive) {
+      setActive(".nav .day", state.day);
     }
-    if (part !== null) {
-      state.part = part;
-      setActive(".part", part);
+    if (part !== null || updateActive) {
+      setActive(".part", state.part);
     }
     if (updateQuery) {
       updateQueryParams();
@@ -89,9 +89,12 @@ window.addEventListener("load", async () => {
     const params = new URLSearchParams(window.location.search);
     const loaded = {};
     for (const key in state) {
-      loaded[key] = parseInt(params.get(key));
+      const value = params.get(key);
+      if (value !== null) {
+        loaded[key] = parseInt(value);
+      }
     }
-    updateState({ ...loaded, updateQuery: false });
+    updateState({ ...loaded, updateActive: true, updateQuery: false });
   }
 
   const mod = (x, m) => (x % m + m) % m;
