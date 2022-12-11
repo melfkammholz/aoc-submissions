@@ -58,32 +58,54 @@ window.addEventListener("load", async () => {
     activatedEl.classList.add(className);
   }
 
-  function selectUserByIndex(index) {
-    state.index = index;
-    setActive("#users .list-group-item", index);
+  function updateQueryParams() {
+    const params = new URLSearchParams(window.location.search);
+    for (const key in state) {
+      params.set(key, `${state[key]}`);
+    }
+    history.pushState(null, "", `${window.location.pathname}?${params}`);
+  }
+
+  function updateState({ index = null, day = null, part = null, updateQuery = true }) {
+    if (index !== null) {
+      state.index = index;
+      setActive("#users .list-group-item", index);
+    }
+    if (day !== null) {
+      state.day = day;  
+      setActive(".nav .day", day);
+    }
+    if (part !== null) {
+      state.part = part;
+      setActive(".part", part);
+    }
+    if (updateQuery) {
+      updateQueryParams();
+    }
     updateSolution();
   }
 
-  function selectDay(day) {
-    state.day = day;  
-    setActive(".nav .day", day);
-    updateSolution();
-  }
-
-  function selectPart(part) {
-    state.part = part;
-    setActive(".part", part);
-    updateSolution();
+  function loadStateFromQueryParams() {
+    const params = new URLSearchParams(window.location.search);
+    const loaded = {};
+    for (const key in state) {
+      loaded[key] = parseInt(params.get(key));
+    }
+    updateState({ ...loaded, updateQuery: false });
   }
 
   const mod = (x, m) => (x % m + m) % m;
 
   window.addEventListener("keydown", (event) => {
-    if (event.key === "w" || event.key === "k" ) selectUserByIndex(mod(state.index - 1, users.length));
-    else if (event.key === "s" || event.key === "j") selectUserByIndex(mod(state.index + 1, users.length));
-    else if (event.key === "a" || event.key === "h") selectDay(mod(state.day - 1, days));
-    else if (event.key === "d" || event.key === "l") selectDay(mod(state.day + 1, days));
-    else if (event.key === "q") selectPart((state.part + 1) % 2);
+    if (event.key === "w" || event.key === "k" ) updateState({ index: mod(state.index - 1, users.length) });
+    else if (event.key === "s" || event.key === "j") updateState({ index: mod(state.index + 1, users.length) });
+    else if (event.key === "a" || event.key === "h") updateState({ day: mod(state.day - 1, days) });
+    else if (event.key === "d" || event.key === "l") updateState({ day: mod(state.day + 1, days) });
+    else if (event.key === "q") updateState({ part: (state.part + 1) % 2 });
+  });
+
+  window.addEventListener("popstate", () => {
+    loadStateFromQueryParams();
   });
 
   users.forEach((user, index) => {
@@ -94,14 +116,14 @@ window.addEventListener("load", async () => {
       </li>
     `;
     el.addEventListener("click", () => {
-      selectUserByIndex(index);
+      updateState({ index });
     });
     document.getElementById("users").appendChild(el);
   });
 
   Array.from(document.querySelectorAll(".part")).forEach((el, i) => {
     el.addEventListener("click", () => {
-      selectPart(i);
+      updateState({ part: i });
     });
   });
 
@@ -113,17 +135,13 @@ window.addEventListener("load", async () => {
     aEl.classList.add("day");
     aEl.textContent = i + 1;
     aEl.addEventListener("click", () => {
-      selectDay(i);
+      updateState({ day: i });
     });
     el.appendChild(aEl);
     document.querySelector(".nav").appendChild(el);
   });
 
-  selectUserByIndex(state.index);
-  selectPart(state.part);
-  selectDay(state.day);
-
-  updateSolution();
+  loadStateFromQueryParams();
 });
 
 if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
