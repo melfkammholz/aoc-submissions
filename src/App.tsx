@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { RootState, day as setDay, part as setPart, user as setUser } from "./index";
+import { useDispatch, useSelector } from "react-redux";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import styled from "styled-components";
-import { range, clamp } from "./utils";
+import { range, currentDay, mod } from "./utils";
 import { ListGroup } from "react-bootstrap";
 
 const TaskSelector = styled.div`
@@ -14,29 +16,41 @@ const TaskSelector = styled.div`
 
 type DaySelectorProps = {
   days: number;
+  selected: number;
 };
 
 const DaySelector: React.FC<DaySelectorProps> = (props) => {
-  const { days } = props;
+  const { days, selected } = props;
+  const dispatch = useDispatch();
   return (
-    <Nav variant="pills">
-      {range(1, days + 1).map(d => (
-        <Nav.Item>
-          <Nav.Link>{d}</Nav.Link>
+    <Nav variant="pills" activeKey={selected}>
+      {range(1, days + 1).map((d) => (
+        <Nav.Item key={d}>
+          <Nav.Link eventKey={d} onClick={() => dispatch(setDay(d))}>{d}</Nav.Link>
         </Nav.Item>
       ))}
     </Nav>
   );
 }
 
-function TaskPartSelector() {
+type TaskPartSelectorProps = {
+  selected: number;
+};
+
+const TaskPartSelector: React.FC<TaskPartSelectorProps> = (props) => {
+  const { selected } = props;
+  const dispatch = useDispatch();
   return (
-    <Nav variant="pills">
+    <Nav variant="pills" activeKey={selected}>
       <Nav.Item>
-        <Nav.Link>A</Nav.Link>
+        <Nav.Link eventKey={0} onClick={() => dispatch(setPart(0))}>
+          A
+        </Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link>B</Nav.Link>
+        <Nav.Link eventKey={1} onClick={() => dispatch(setPart(1))}>
+          B
+        </Nav.Link>
       </Nav.Item>
     </Nav>
   );
@@ -63,6 +77,7 @@ type KeyboardShortcutsProps = {
 
 const KeyboardShortcuts: React.FC<KeyboardShortcutsProps> = (props) => {
   const { className } = props;
+
   return (
     <div className={className}>
       <h5>Keyboard shortcuts</h5>
@@ -125,8 +140,8 @@ const UserListGroupItem = styled(ListGroup.Item)`
 const UserList: React.FC<UserListProps> = (props) => {
   const { className, users } = props;
   return <ListGroup className={className}>
-    {users.map(user => (
-      <UserListGroupItem>
+    {users.map((user, i) => (
+      <UserListGroupItem key={i}>
         <UserName>{user.name}</UserName>
         <UserLang>{user.langName}</UserLang>
       </UserListGroupItem>
@@ -164,13 +179,7 @@ const StyledContainer = styled(Container)`
 function App() {
   const year = 2022;
 
-  const days = new Date(
-    clamp(
-      new Date(`${year}-12-01`).valueOf(),
-      new Date(`${year}-12-25`).valueOf(),
-      Date.now()
-    )
-  ).getDate();
+  const { day, part } = useSelector((state: RootState) => state);
 
   return (
     <StyledContainer fluid>
@@ -181,8 +190,8 @@ function App() {
         </LeftCol>
         <Col sm={6}>
           <TaskSelector>
-            <TaskPartSelector />
-            <DaySelector days={days} />
+            <TaskPartSelector selected={part} />
+            <DaySelector days={currentDay()} selected={day} />
           </TaskSelector>
           <CodePreview />
         </Col>
