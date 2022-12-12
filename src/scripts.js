@@ -5,7 +5,7 @@ window.addEventListener("load", async () => {
   const users = await loadUsers();
   const clamp = (min, max, val) => Math.min(max, Math.max(val, min));
 
-  const days = new Date(clamp(new Date(`${year}-12-01`).valueOf(), new Date(`${year}-12-25`).valueOf(), Date.now())).getDate();
+  const days = new Date(clamp(new Date(`${year}-12-01`).valueOf(), new Date(`${year}-12-25`).valueOf(), Date.now() - 6 * 60 * 60 * 1000)).getDate();
   const state = {
     day: days - 1,
     part: 0,
