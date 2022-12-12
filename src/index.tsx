@@ -2,9 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createSlice, configureStore, PayloadAction } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
+import logger from "redux-logger";
 import "./index.css";
 import App from "./App";
-import { currentDay } from "./utils";
+import { currentDay, mod } from "./utils";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -14,8 +15,10 @@ type State = {
   user: number;
 };
 
+const days = currentDay();
+
 const initialState: State = {
-  day: currentDay(),
+  day: days - 1,
   part: 0,
   user: 0,
 };
@@ -27,20 +30,37 @@ const stateSlice = createSlice({
     day: (state, action: PayloadAction<number>) => {
       state.day = action.payload;
     },
+    nextDay: (state) => {
+      state.day = mod(state.day + 1, days);
+    },
+    prevDay: (state) => {
+      state.day = mod(state.day - 1, days);
+    },
     part: (state, action: PayloadAction<number>) => {
       state.part = action.payload;
+    },
+    switchPart: (state) => {
+      state.part = (state.part + 1) % 2;
     },
     user: (state, action: PayloadAction<number>) => {
       state.user = action.payload;
     },
+    nextUser: (state) => {
+      state.user = mod(state.user + 1, 10);
+    },
+    prevUser: (state) => {
+      state.user = mod(state.user - 1, 10);
+    }
   },
 });
 
 const store = configureStore({
-  reducer: stateSlice.reducer
+  reducer: stateSlice.reducer,
+  middleware: [logger]
 });
 
-export const { day, part, user } = stateSlice.actions;
+
+export const { day, part, user, nextDay, prevDay, switchPart, nextUser, prevUser } = stateSlice.actions;
 
 export type RootState = ReturnType<typeof store.getState>
 
