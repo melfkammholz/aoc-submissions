@@ -11,6 +11,8 @@ import { range, currentDay, mod } from "./utils";
 import { ListGroup } from "react-bootstrap";
 import KeyboardShortcuts from "./KeyboardShortcuts";
 import TaskPartSelector from "./TaskPartSelector";
+import UserList from "./UserList";
+import { year } from "./constants";
 
 const TaskSelector = styled.div`
   display: flex;
@@ -20,59 +22,6 @@ const TaskSelector = styled.div`
 function CodePreview() {
   return <pre>No solution yet</pre>
 }
-
-type User = {
-  name: string;
-  langName: string;
-};
-
-type UserListProps = {
-  className?: string;
-  users: User[];
-};
-
-const UserName = styled.span`
-  @media (max-width: 576px) {
-    white-space: nowrap;
-  }
-`;
-
-const UserLang = styled.span`
-  @media (max-width: 576px) {
-    display: none;
-  }
-`;
-
-const users = [
-  { name: "Bob", langName: "Bob" }
-];
-
-const UserListGroupItem = styled(ListGroup.Item)`
-  display: flex;
-  justify-content: space-between;
-`;
-
-const UserList: React.FC<UserListProps> = (props) => {
-  const { className, users } = props;
-  return <ListGroup className={className}>
-    {users.map((user, i) => (
-      <UserListGroupItem key={i}>
-        <UserName>{user.name}</UserName>
-        <UserLang>{user.langName}</UserLang>
-      </UserListGroupItem>
-    ))}
-  </ListGroup>
-}
-
-const StyledUserList = styled(UserList)`
-  top: 1em;
-  overflow-y: scroll;
-
-  @media (max-width: 576px) {
-    flex-direction: row;
-    overflow-x: scroll;
-  }
-`;
 
 const LeftCol = styled(Col)`
   position: sticky;
@@ -92,15 +41,13 @@ const StyledContainer = styled(Container)`
 `;
 
 function App() {
-  const year = 2022;
-
   const { day, part } = useSelector((state: RootState) => state);
 
   return (
     <StyledContainer fluid>
       <Row>
         <LeftCol sm={3}>
-          <StyledUserList users={users} />
+          <UserList />
           <KeyboardShortcuts />
         </LeftCol>
         <Col sm={6}>
