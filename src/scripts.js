@@ -130,18 +130,26 @@ window.addEventListener("load", async () => {
     });
   });
 
-  [...Array(days)].forEach((_, i) => {
+  function createNavItem({ label = "", classes = [], onClick = () => {} }) {
     const el = document.createElement("li");
     el.classList.add("nav-item");
     const aEl = document.createElement("a");
     aEl.classList.add("nav-link");
-    aEl.classList.add("day");
-    aEl.textContent = i + 1;
-    aEl.addEventListener("click", () => {
-      updateState({ day: i });
-    });
+    for (const cl of classes) {
+      aEl.classList.add(cl);
+    }
+    aEl.textContent = label;
+    aEl.addEventListener("click", onClick);
     el.appendChild(aEl);
-    document.querySelector(".nav").appendChild(el);
+    return el;
+  }
+
+  const navEl = document.querySelector(".nav");
+
+  [...Array(days)].forEach((_, day) => {
+    navEl.appendChild(createNavItem({ label: `${day + 1}`, classes: ["day"], onClick: () => {
+      updateState({ day })
+    }}));
   });
 
   loadStateFromQueryParams();
