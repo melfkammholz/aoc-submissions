@@ -47,8 +47,12 @@ window.addEventListener("load", async () => {
     return el.children[0];
   }
 
+  function currentUser() {
+    return users[state.index];
+  }
+
   function updateSolution() {
-    loadSolution(users[state.index], state.day, state.part);
+    loadSolution(currentUser(), state.day, state.part);
   }
 
   function setActive(selector, index) {
@@ -148,9 +152,18 @@ window.addEventListener("load", async () => {
 
   [...Array(days)].forEach((_, day) => {
     navEl.appendChild(createNavItem({ label: `${day + 1}`, classes: ["day"], onClick: () => {
-      updateState({ day })
+      updateState({ day });
     }}));
   });
+
+  navEl.appendChild(createNavItem({ label: "View Source", classes: ["text-white"], onClick: () => {
+    const webUrl = currentUser().solutionWebUrl(state.day, state.part);
+    if (webUrl) {
+      window.location.href = webUrl;
+    } else {
+      alert("No web URL is available for this solution!");
+    }
+  }}));
 
   loadStateFromQueryParams();
 });
