@@ -135,14 +135,8 @@ window.addEventListener("load", async () => {
   });
 
   function createNavItem({ label = "", classes = [], onClick = () => {} }) {
-    const el = document.createElement("li");
-    el.classList.add("nav-item");
-    const aEl = document.createElement("a");
-    aEl.classList.add("nav-link");
-    for (const cl of classes) {
-      aEl.classList.add(cl);
-    }
-    aEl.textContent = label;
+    const el = render`<li class="nav-item" />`;
+    const aEl = render`<a class="nav-link ${classes.join(" ")}">${label}</a>`;
     aEl.addEventListener("click", onClick);
     el.appendChild(aEl);
     return el;
