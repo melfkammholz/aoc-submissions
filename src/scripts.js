@@ -26,12 +26,16 @@ window.addEventListener("load", async () => {
       }
       const buffer = await result.arrayBuffer();
       const code = decoder.decode(buffer);
-      await Prism.plugins.autoloader.loadLanguages(
-        lang,
-        () => {
-          codeEl.innerHTML = Prism.highlight(code, Prism.languages[lang], user.lang);
-        }
-      );
+      if (lang) {
+        await Prism.plugins.autoloader.loadLanguages(
+          lang,
+          () => {
+            codeEl.innerHTML = Prism.highlight(code, Prism.languages[lang], user.lang);
+          }
+        );
+      } else {
+        codeEl.innerText = code;
+      }
     } catch (err) {
       codeEl.textContent = err.message;
     }
