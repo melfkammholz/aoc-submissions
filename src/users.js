@@ -41,7 +41,7 @@ export async function loadUsers() {
     },
     {
       name: "fwcd",
-      lang: day => fwcdPaths[day]?.lang,
+      lang: day => fwcdPaths[day]?.lang?.codemirror,
       langName: "Mixed",
       encoding: day => fwcdPaths[day]?.encoding,
       ...gitHubUrls({
