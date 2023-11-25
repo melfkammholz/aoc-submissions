@@ -32,12 +32,12 @@ export async function loadUsers() {
     },
     {
       name: "Melf",
-      lang: _ => "haskell",
-      langName: "Haskell",
+      lang: _ => "lua",
+      langName: "Lua",
       ...gitHubUrls({
         user: "melfkammholz",
         repo: `aoc${shortYear}`,
-        path: (day, part) => `day${pad(day + 1, 2)}/${["A", "B"][part]}.hs`
+        path: (day, part) => `day${pad(day + 1, 2)}/${["A", "B"][part]}.lua`
       })
     },
     {
