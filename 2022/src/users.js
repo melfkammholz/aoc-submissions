@@ -3,9 +3,8 @@ import { gitHubUrls, pad } from './utils.js';
 
 /** Loads the list of users. */
 export async function loadUsers() {
-  // TODO handle error if necessary?
-  const fwcdPaths = await (await fetch(`https://raw.githubusercontent.com/fwcd/advent-of-code-${year}/main/paths.json`)).json().catch(() => ({}));
-  const estgPaths = await (await fetch(`https://raw.githubusercontent.com/estugon/advent-of-code-${year}/main/paths.json`)).json().catch(() => ({}));
+  const fwcdPaths = await (await fetch(`https://raw.githubusercontent.com/fwcd/advent-of-code-${year}/main/paths.json`)).json();
+  const estgPaths = await (await fetch(`https://raw.githubusercontent.com/estugon/advent-of-code-${year}/main/paths.json`)).json();
 
   const users = [
     {

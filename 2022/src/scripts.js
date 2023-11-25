@@ -51,12 +51,8 @@ window.addEventListener("load", async () => {
     return el.children[0];
   }
 
-  function currentUser() {
-    return users[state.index];
-  }
-
   function updateSolution() {
-    loadSolution(currentUser(), state.day, state.part);
+    loadSolution(users[state.index], state.day, state.part);
   }
 
   function setActive(selector, index) {
@@ -138,30 +134,19 @@ window.addEventListener("load", async () => {
     });
   });
 
-  function createNavItem({ label = "", classes = [], onClick = () => {} }) {
-    const el = render`<li class="nav-item" />`;
-    const aEl = render`<a class="nav-link ${classes.join(" ")}">${label}</a>`;
-    aEl.addEventListener("click", onClick);
+  [...Array(days)].forEach((_, i) => {
+    const el = document.createElement("li");
+    el.classList.add("nav-item");
+    const aEl = document.createElement("a");
+    aEl.classList.add("nav-link");
+    aEl.classList.add("day");
+    aEl.textContent = i + 1;
+    aEl.addEventListener("click", () => {
+      updateState({ day: i });
+    });
     el.appendChild(aEl);
-    return el;
-  }
-
-  const navEl = document.querySelector(".nav");
-
-  [...Array(days)].forEach((_, day) => {
-    navEl.appendChild(createNavItem({ label: `${day + 1}`, classes: ["day"], onClick: () => {
-      updateState({ day });
-    }}));
+    document.querySelector(".nav").appendChild(el);
   });
-
-  navEl.appendChild(createNavItem({ label: "View Source", classes: ["text-white"], onClick: () => {
-    const webUrl = currentUser().solutionWebUrl(state.day, state.part);
-    if (webUrl) {
-      window.location.href = webUrl;
-    } else {
-      alert("No web URL is available for this solution!");
-    }
-  }}));
 
   loadStateFromQueryParams();
 });
