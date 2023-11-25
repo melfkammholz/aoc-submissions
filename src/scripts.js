@@ -113,6 +113,13 @@ window.addEventListener("load", async () => {
     else if (event.key === "a" || event.key === "h") updateState({ day: mod(state.day - 1, days) });
     else if (event.key === "d" || event.key === "l") updateState({ day: mod(state.day + 1, days) });
     else if (event.key === "q") updateState({ part: (state.part + 1) % 2 });
+
+    // scroll when keyboard shortcuts are used for navigation
+    if (["w", "s", "k", "j"].indexOf(event.key) !== -1) {
+      const li = document.querySelector("#users .list-group-item.active");
+      li.parentElement.scrollTop = 
+        li.offsetTop - 0.5 * (li.parentElement.offsetHeight - li.offsetHeight);
+    }
   });
 
   window.addEventListener("popstate", () => {
