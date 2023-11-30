@@ -136,12 +136,12 @@ export async function loadUsers() {
     },
     {
       name: "H1tchhiker",
-      lang: _ => "python",
-      langName: "Python",
+      lang: _ => "elixir",
+      langName: "Elixir",
       ...gitHubUrls({
         user: "n00on",
         repo: "AdventOfCode",
-        path: day => `${year}/${pad(day + 1, 2)}/day${pad(day + 1, 2)}.py`
+        path: day => `${year}/${pad(day + 1, 2)}/day${pad(day + 1, 2)}.ex`
       })
     },
     {
