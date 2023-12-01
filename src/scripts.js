@@ -2,9 +2,10 @@ import { year } from './constants.js';
 import { loadUsers } from './users.js';
 
 window.addEventListener("load", async () => {
-  const users = await loadUsers();
-
+  const mod = (x, m) => (x % m + m) % m;
   const clamp = (min, max, val) => Math.min(max, Math.max(val, min));
+
+  const users = await loadUsers();
 
   const days = new Date(clamp(new Date(`${year}-12-01`).valueOf(), new Date(`${year}-12-25`).valueOf(), Date.now() - 6 * 60 * 60 * 1000)).getDate();
   const state = {
@@ -148,8 +149,6 @@ window.addEventListener("load", async () => {
     }
     updateState({ ...loaded, updateActive: true, updateQuery: false });
   }
-
-  const mod = (x, m) => (x % m + m) % m;
 
   function userNameWithOffset(userName, offset) {
     return users[mod(userIndex(userName) + offset, users.length)].name;
