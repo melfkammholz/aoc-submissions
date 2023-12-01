@@ -130,7 +130,7 @@ export async function loadUsers() {
       langName: "C#",
       ...gitHubUrls({
         user: "jnccd",
-        repo: "AdventOfCode",
+        repo: `advent-of-code-${year}`,
         path: day => `Dec${day + 1}/Program.cs`
       })
     },
