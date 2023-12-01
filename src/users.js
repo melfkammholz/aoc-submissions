@@ -197,5 +197,9 @@ export async function loadUsers() {
     },
   ];
 
+  if (new Set(users.map(u => u.name)).size != users.length) {
+    throw new Error("Users must have unique names!")
+  }
+
   return users;
 }

@@ -2,16 +2,16 @@ import { year } from './constants.js';
 import { loadUsers } from './users.js';
 
 window.addEventListener("load", async () => {
+  const users = await loadUsers();
+
   const clamp = (min, max, val) => Math.min(max, Math.max(val, min));
 
   const days = new Date(clamp(new Date(`${year}-12-01`).valueOf(), new Date(`${year}-12-25`).valueOf(), Date.now() - 6 * 60 * 60 * 1000)).getDate();
   const state = {
     day: days - 1,
     part: 0,
-    index: 0
+    userName: users[0].name,
   };
-
-  const users = await loadUsers();
 
   async function loadSolution(user, day, part) {
     const url = user.solutionUrl(day, part);
@@ -55,8 +55,16 @@ window.addEventListener("load", async () => {
     return el.children[0];
   }
 
+  function userIndex(userName) {
+    const index = users.findIndex(u => u.name === userName);
+    if (index < 0) {
+      throw new Error(`Could not find index for user ${userName}`);
+    }
+    return index;
+  }
+
   function currentUser() {
-    return users[state.index];
+    return state.userName ? users.find(u => u.name === state.userName) : null;
   }
 
   function updateSolution() {
@@ -85,7 +93,7 @@ window.addEventListener("load", async () => {
     users.sort((a, b) => a.name.localeCompare(b.name));
     users.sort((a, b) => a.langName(state.day).localeCompare(b.langName(state.day)));
 
-    users.forEach((user, index) => {
+    users.forEach(user => {
       const el = render`
         <li class="list-group-item">
           <span class="user-name">${user.name}</span>
@@ -96,21 +104,25 @@ window.addEventListener("load", async () => {
         </li>
       `;
       el.addEventListener("click", () => {
-        updateState({ index });
+        updateState({ userName: user.name });
       });
       usersEl.appendChild(el);
     });
   }
 
-  function updateState({ index = null, day = null, part = null, updateActive = false, updateQuery = true }) {
-    state.index = index ?? state.index;
+  function updateState({ userName = null, day = null, part = null, updateActive = false, updateQuery = true }) {
+    if (userName !== null && !users.find(u => u.name === userName)) {
+      console.warn(`User ${userName} could not be found!`);
+      userName = null;
+    }
+    state.userName = userName ?? state.userName;
     state.day = day ?? state.day;
     state.part = part ?? state.part;
-    if (day !== null) {
+    if (day !== null || updateActive) {
       updateUsers();
     }
-    if (index !== null || updateActive) {
-      setActive("#users .list-group-item", state.index);
+    if (userName !== null || day !== null || updateActive) {
+      setActive("#users .list-group-item", userIndex(state.userName));
     }
     if (day !== null || updateActive) {
       setActive(".nav .day", state.day);
@@ -130,7 +142,8 @@ window.addEventListener("load", async () => {
     for (const key in state) {
       const value = params.get(key);
       if (value !== null) {
-        loaded[key] = parseInt(value);
+        const parsed = parseInt(value);
+        loaded[key] = isNaN(parsed) ? value : parsed;
       }
     }
     updateState({ ...loaded, updateActive: true, updateQuery: false });
@@ -138,9 +151,13 @@ window.addEventListener("load", async () => {
 
   const mod = (x, m) => (x % m + m) % m;
 
+  function userNameWithOffset(userName, offset) {
+    return users[mod(userIndex(userName) + offset, users.length)].name;
+  }
+
   window.addEventListener("keydown", (event) => {
-    if (event.key === "w" || event.key === "k" ) updateState({ index: mod(state.index - 1, users.length) });
-    else if (event.key === "s" || event.key === "j") updateState({ index: mod(state.index + 1, users.length) });
+    if (event.key === "w" || event.key === "k" ) updateState({ userName: userNameWithOffset(state.userName, -1) });
+    else if (event.key === "s" || event.key === "j") updateState({ userName: userNameWithOffset(state.userName, 1) });
     else if (event.key === "a" || event.key === "h") updateState({ day: mod(state.day - 1, days) });
     else if (event.key === "d" || event.key === "l") updateState({ day: mod(state.day + 1, days) });
     else if (event.key === "q") updateState({ part: (state.part + 1) % 2 });
