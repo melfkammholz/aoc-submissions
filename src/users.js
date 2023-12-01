@@ -2,7 +2,7 @@ import { year, shortYear } from './constants.js';
 import { gitHubUrls, pad } from './utils.js';
 
 /** Loads the list of users. */
-export async function loadUsers() {
+export async function loadUsers(days) {
   // TODO handle error if necessary?
   const fwcdPaths = await (await fetch(`https://raw.githubusercontent.com/fwcd/advent-of-code-${year}/main/paths.json`)).json().catch(() => ({}));
   const estgPaths = await (await fetch(`https://raw.githubusercontent.com/estugon/advent-of-code-${year}/main/paths.json`)).json().catch(() => ({}));
@@ -43,7 +43,7 @@ export async function loadUsers() {
     {
       name: "fwcd",
       lang: day => fwcdPaths[day]?.lang?.codemirror,
-      langName: "Mixed",
+      langName: fwcdPaths[days - 1]?.lang?.name ?? "Unknown",
       encoding: day => fwcdPaths[day]?.encoding,
       ...gitHubUrls({
         user: "fwcd",

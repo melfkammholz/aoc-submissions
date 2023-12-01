@@ -2,7 +2,6 @@ import { year } from './constants.js';
 import { loadUsers } from './users.js';
 
 window.addEventListener("load", async () => {
-  const users = await loadUsers();
   const clamp = (min, max, val) => Math.min(max, Math.max(val, min));
 
   const days = new Date(clamp(new Date(`${year}-12-01`).valueOf(), new Date(`${year}-12-25`).valueOf(), Date.now() - 6 * 60 * 60 * 1000)).getDate();
@@ -11,6 +10,8 @@ window.addEventListener("load", async () => {
     part: 0,
     index: 0
   };
+
+  const users = await loadUsers(days);
 
   async function loadSolution(user, day, part) {
     const url = user.solutionUrl(day, part);
