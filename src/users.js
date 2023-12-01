@@ -184,6 +184,16 @@ export async function loadUsers() {
         path: day => `Haskell/Day${day + 1}/A.hs`
       })
     },
+    {
+      name: "Magi3r",
+      lang: _ => "esolang",
+      langName: "DDP",
+      ...gitHubUrls({
+        user: "Magi3r",
+        repo: `AoC-${year}`,
+        path: (day, part) => `${pad(day + 1, 2)}${["a", "b"][part]}.ddp`
+      })
+    },
   ];
 
   users.sort((a, b) => a.name.localeCompare(b.name));
