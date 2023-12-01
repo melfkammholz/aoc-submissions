@@ -80,7 +80,7 @@ window.addEventListener("load", async () => {
   }
 
   function updateQueryParams() {
-    const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams();
     for (const key in state) {
       params.set(key, `${state[key]}`);
     }
