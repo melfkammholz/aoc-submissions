@@ -43,6 +43,7 @@ export async function loadUsers(days) {
     {
       name: "fwcd",
       lang: day => fwcdPaths[day]?.lang?.codemirror,
+      langAnnotation: "Today: ",
       langName: fwcdPaths[days - 1]?.lang?.name ?? "Unknown",
       encoding: day => fwcdPaths[day]?.encoding,
       ...gitHubUrls({

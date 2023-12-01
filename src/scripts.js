@@ -134,7 +134,10 @@ window.addEventListener("load", async () => {
     const el = render`
       <li class="list-group-item">
         <span class="user-name">${user.name}</span>
-        <span class="user-lang-name">${user.langName}</span>
+        <span class="user-lang">
+          ${user.langAnnotation ? `<span class="user-lang-annotation">${user.langAnnotation}</span>` : ""}
+          <span>${user.langName}</span>
+        </span>
       </li>
     `;
     el.addEventListener("click", () => {

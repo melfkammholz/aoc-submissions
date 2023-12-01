@@ -33,6 +33,10 @@
   justify-content: space-between;
 }
 
+.user-lang-annotation {
+  opacity: 0.6;
+}
+
 #keyboard {
   margin: 1em 0 0 1em;
 }
@@ -78,7 +82,14 @@
     white-space: nowrap;
   }
 
-  .user-lang-name {
+  .user-lang {
+    display: none;
+  }
+}
+
+/* Medium Devices */
+@media (max-width: 768px) {
+  .user-lang-annotation {
     display: none;
   }
 }
