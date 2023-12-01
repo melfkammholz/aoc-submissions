@@ -31,6 +31,9 @@ window.addEventListener("load", async () => {
           lang,
           () => {
             codeEl.innerHTML = Prism.highlight(code, Prism.languages[lang], user.lang);
+          },
+          () => {
+            codeEl.innerText = code;
           }
         );
       } else {
