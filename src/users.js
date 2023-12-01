@@ -204,6 +204,16 @@ export async function loadUsers() {
         repo: "AdventOfCode",
         path: (day, part) => `${day + 1}/part${part + 1}.py`
       })
+    },
+    {
+      name: "Magi3r",
+      lang: _ => "esolang",
+      langName: "Die Deutsche Programmiersprache",
+      ...gitHubUrls({
+        user: "Magi3r",
+        repo: `AoC-${year}`,
+        path: day => `${pad(day + 1, 2)}${["a", "b"][part]}.ddp`
+      })
     }
   ];
 
