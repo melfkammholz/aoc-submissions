@@ -62,17 +62,6 @@ export async function loadUsers() {
       })
     },
     {
-      name: "tuhhy",
-      lang: _ => "python",
-      langName: "Python",
-      ...gitHubUrls({
-        user: "tuhhy",
-        repo: "aoc",
-        branch: "master",
-        path: (day, part) => `Day${day + 1}/Task${["A", "B"][part]}.py`
-      })
-    },
-    {
       name: "Yorik Hansen",
       lang: _ => "python",
       langName: "Python",
@@ -195,16 +184,6 @@ export async function loadUsers() {
         path: day => `Haskell/Day${day + 1}/A.hs`
       })
     },
-    {
-      name: "Felioh",
-      lang: _ => "python",
-      langName: "Python",
-      ...gitHubUrls({
-        user: "Felioh",
-        repo: "AdventOfCode",
-        path: (day, part) => `${day + 1}/part${part + 1}.py`
-      })
-    }
   ];
 
   users.sort((a, b) => a.name.localeCompare(b.name));
