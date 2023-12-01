@@ -161,7 +161,7 @@ window.addEventListener("load", async () => {
     }}));
   });
 
-  navEl.appendChild(createNavItem({ label: "View Source", classes: ["text-white"], onClick: () => {
+  navEl.appendChild(createNavItem({ label: "View Source", onClick: () => {
     const webUrl = currentUser().solutionWebUrl(state.day, state.part);
     if (webUrl) {
       window.location.href = webUrl;
