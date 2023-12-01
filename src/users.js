@@ -2,7 +2,7 @@ import { year, shortYear } from './constants.js';
 import { gitHubUrls, pad } from './utils.js';
 
 /** Loads the list of users. */
-export async function loadUsers(days) {
+export async function loadUsers() {
   // TODO handle error if necessary?
   const fwcdPaths = await (await fetch(`https://raw.githubusercontent.com/fwcd/advent-of-code-${year}/main/paths.json`)).json().catch(() => ({}));
   const estgPaths = await (await fetch(`https://raw.githubusercontent.com/estugon/advent-of-code-${year}/main/paths.json`)).json().catch(() => ({}));
@@ -11,7 +11,7 @@ export async function loadUsers(days) {
     {
       name: "Alexander P",
       lang: _ => "clike",
-      langName: "C++",
+      langName: _ => "C++",
       ...gitHubUrls({
         user: "Zeldacrafter",
         repo: "CompProg-Solutions",
@@ -22,7 +22,7 @@ export async function loadUsers(days) {
     {
       name: "I3J03RN",
       lang: _ => "clike",
-      langName: "C++",
+      langName: _ => "C++",
       ...gitHubUrls({
         user: "I3J03RN",
         repo: "ProgrammingChallenges",
@@ -33,7 +33,7 @@ export async function loadUsers(days) {
     {
       name: "Melf",
       lang: _ => "lua",
-      langName: "Lua",
+      langName: _ => "Lua",
       ...gitHubUrls({
         user: "melfkammholz",
         repo: `aoc${shortYear}`,
@@ -44,7 +44,7 @@ export async function loadUsers(days) {
       name: "fwcd",
       lang: day => fwcdPaths[day]?.lang?.codemirror,
       langAnnotation: "Today: ",
-      langName: fwcdPaths[days - 1]?.lang?.name ?? "Unknown",
+      langName: day => fwcdPaths[day]?.lang?.name ?? "Unknown",
       encoding: day => fwcdPaths[day]?.encoding,
       ...gitHubUrls({
         user: "fwcd",
@@ -55,7 +55,7 @@ export async function loadUsers(days) {
     {
       name: "xtay2",
       lang: _ => "java",
-      langName: "Java",
+      langName: _ => "Java",
       ...gitHubUrls({
         user: "xtay2",
         repo: "AdventOfCode",
@@ -65,7 +65,7 @@ export async function loadUsers(days) {
     {
       name: "Yorik Hansen",
       lang: _ => "python",
-      langName: "Python",
+      langName: _ => "Python",
       ...gitHubUrls({
         user: "YorikHansen",
         repo: "AdventOfCode",
@@ -75,7 +75,7 @@ export async function loadUsers(days) {
     {
       name: "Skgland",
       lang: _ => "rust",
-      langName: "Rust",
+      langName: _ => "Rust",
       ...gitHubUrls({
         user: "Skgland",
         repo: "Advent-of-Code",
@@ -85,7 +85,7 @@ export async function loadUsers(days) {
     {
       name: "Estugon",
       lang: day => estgPaths[day]?.lang,
-      langName: "Mixed",
+      langName: _ => "Mixed",
       ...gitHubUrls({
         user: "Estugon",
         repo: `advent-of-code-${year}`,
@@ -95,7 +95,7 @@ export async function loadUsers(days) {
     {
       name: "Dormanil",
       lang: _ => "fsharp",
-      langName: "F#",
+      langName: _ => "F#",
       ...gitHubUrls({
         user: "Dormanil",
         repo: "Advent-of-Code",
@@ -106,7 +106,7 @@ export async function loadUsers(days) {
     {
       name: "b3z",
       lang: _ => "python",
-      langName: "Python",
+      langName: _ => "Python",
       ...gitHubUrls({
         user: "b3z",
         repo: "aoc",
@@ -117,7 +117,7 @@ export async function loadUsers(days) {
     {
       name: "Dobiko",
       lang: _ => "clike",
-      langName: "C#",
+      langName: _ => "C#",
       ...gitHubUrls({
         user: "jnccd",
         repo: `advent-of-code-${year}`,
@@ -127,7 +127,7 @@ export async function loadUsers(days) {
     {
       name: "H1tchhiker",
       lang: _ => "elixir",
-      langName: "Elixir",
+      langName: _ => "Elixir",
       ...gitHubUrls({
         user: "n00on",
         repo: "AdventOfCode",
@@ -137,7 +137,7 @@ export async function loadUsers(days) {
     {
       name: "H1ghBre4k3r",
       lang: _ => "rust",
-      langName: "Rust",
+      langName: _ => "Rust",
       ...gitHubUrls({
         user: "H1ghBre4k3r",
         repo: `aoc-${year}`,
@@ -147,7 +147,7 @@ export async function loadUsers(days) {
     {
       name: "Zihark",
       lang: _ => "haskell",
-      langName: "Haskell",
+      langName: _ => "Haskell",
       ...gitHubUrls({
         user: "Ziharrk",
         repo: `aoc${year}`,
@@ -157,7 +157,7 @@ export async function loadUsers(days) {
     {
       name: "sebfisch",
       lang: _ => "java",
-      langName: "Java",
+      langName: _ => "Java",
       ...gitHubUrls({
         user: "sebfisch",
         repo: "AdventOfCode",
@@ -168,7 +168,7 @@ export async function loadUsers(days) {
     {
       name: "hendrick404",
       lang: _ => "python",
-      langName: "Python",
+      langName: _ => "Python",
       ...gitHubUrls({
         user: "hendrick404",
         repo: `advent-of-code-${year}`,
@@ -178,7 +178,7 @@ export async function loadUsers(days) {
     {
       name: "maclement",
       lang: _ => "haskell",
-      langName: "Haskell",
+      langName: _ => "Haskell",
       ...gitHubUrls({
         user: "maclement",
         repo: `advent-of-code-${year}`,
@@ -188,7 +188,7 @@ export async function loadUsers(days) {
     {
       name: "Magi3r",
       lang: _ => "esolang",
-      langName: "DDP",
+      langName: _ => "DDP",
       ...gitHubUrls({
         user: "Magi3r",
         repo: `AoC-${year}`,
@@ -196,9 +196,6 @@ export async function loadUsers(days) {
       })
     },
   ];
-
-  users.sort((a, b) => a.name.localeCompare(b.name));
-  users.sort((a, b) => a.langName.localeCompare(b.langName));
 
   return users;
 }

@@ -11,7 +11,7 @@ window.addEventListener("load", async () => {
     index: 0
   };
 
-  const users = await loadUsers(days);
+  const users = await loadUsers();
 
   async function loadSolution(user, day, part) {
     const url = user.solutionUrl(day, part);
@@ -78,10 +78,37 @@ window.addEventListener("load", async () => {
     history.pushState(null, "", `${window.location.pathname}?${params}`);
   }
 
+  function updateUsers() {
+    const usersEl = document.getElementById("users");
+    usersEl.innerHTML = "";
+
+    users.sort((a, b) => a.name.localeCompare(b.name));
+    users.sort((a, b) => a.langName(state.day).localeCompare(b.langName(state.day)));
+
+    users.forEach((user, index) => {
+      const el = render`
+        <li class="list-group-item">
+          <span class="user-name">${user.name}</span>
+          <span class="user-lang">
+            ${user.langAnnotation ? `<span class="user-lang-annotation">${user.langAnnotation}</span>` : ""}
+            <span class="user-lang-name">${user.langName(state.day)}</span>
+          </span>
+        </li>
+      `;
+      el.addEventListener("click", () => {
+        updateState({ index });
+      });
+      usersEl.appendChild(el);
+    });
+  }
+
   function updateState({ index = null, day = null, part = null, updateActive = false, updateQuery = true }) {
     state.index = index ?? state.index;
     state.day = day ?? state.day;
     state.part = part ?? state.part;
+    if (day !== null) {
+      updateUsers();
+    }
     if (index !== null || updateActive) {
       setActive("#users .list-group-item", state.index);
     }
@@ -128,22 +155,6 @@ window.addEventListener("load", async () => {
 
   window.addEventListener("popstate", () => {
     loadStateFromQueryParams();
-  });
-
-  users.forEach((user, index) => {
-    const el = render`
-      <li class="list-group-item">
-        <span class="user-name">${user.name}</span>
-        <span class="user-lang">
-          ${user.langAnnotation ? `<span class="user-lang-annotation">${user.langAnnotation}</span>` : ""}
-          <span>${user.langName}</span>
-        </span>
-      </li>
-    `;
-    el.addEventListener("click", () => {
-      updateState({ index });
-    });
-    document.getElementById("users").appendChild(el);
   });
 
   Array.from(document.querySelectorAll(".part")).forEach((el, i) => {
