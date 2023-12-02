@@ -206,8 +206,5 @@ export async function loadUsers() {
     }
   ];
 
-  users.sort((a, b) => a.name.localeCompare(b.name));
-  users.sort((a, b) => a.langName.localeCompare(b.langName));
-
   return users;
 }
