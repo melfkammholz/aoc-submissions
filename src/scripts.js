@@ -4,14 +4,26 @@ import { loadUsers } from './users.js';
 window.addEventListener("load", async () => {
   const mod = (x, m) => (x % m + m) % m;
   const clamp = (min, max, val) => Math.min(max, Math.max(val, min));
+  
+  const minBy = (xs, p) => xs.reduce((y, x) => p(y, x) < 0 ? y : x, xs[0]);
+  const comps = (...ps) => (a, b) => ps.reduce((r, p) => r == 0 ? p(a, b) : r, 0);
+  const userComp = day => comps(
+    (a, b) => a.langName(day).localeCompare(b.langName(day)),
+    (a, b) => a.name.localeCompare(b.name)
+  );
 
   const users = await loadUsers();
 
-  const days = new Date(clamp(new Date(`${year}-12-01`).valueOf(), new Date(`${year}-12-25`).valueOf(), Date.now() - 6 * 60 * 60 * 1000)).getDate();
+  const days = new Date(clamp(
+      new Date(`${year}-12-01`).valueOf(), 
+      new Date(`${year}-12-25`).valueOf(), 
+      Date.now() - 6 * 60 * 60 * 1000
+    )).getDate();
+  
   const state = {
     day: days - 1,
     part: 0,
-    userName: users[0].name,
+    userName: minBy(users, userComp(days - 1)).name,
   };
 
   async function loadSolution(user, day, part) {
@@ -91,8 +103,7 @@ window.addEventListener("load", async () => {
     const usersEl = document.getElementById("users");
     usersEl.innerHTML = "";
 
-    users.sort((a, b) => a.name.localeCompare(b.name));
-    users.sort((a, b) => a.langName(state.day).localeCompare(b.langName(state.day)));
+    users.sort(userComp(state.day));
 
     users.forEach(user => {
       const el = render`
@@ -116,9 +127,11 @@ window.addEventListener("load", async () => {
       console.warn(`User ${userName} could not be found!`);
       userName = null;
     }
-    state.userName = userName ?? state.userName;
+
     state.day = day ?? state.day;
     state.part = part ?? state.part;
+    state.userName = userName ?? minBy(users, userComp(state.day)).name;
+
     if (day !== null || updateActive) {
       updateUsers();
     }
