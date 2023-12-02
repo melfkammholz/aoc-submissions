@@ -5,7 +5,6 @@ import { gitHubUrls, pad } from './utils.js';
 export async function loadUsers() {
   // TODO handle error if necessary?
   const fwcdPaths = await (await fetch(`https://raw.githubusercontent.com/fwcd/advent-of-code-${year}/main/paths.json`)).json().catch(() => ({}));
-  const estgPaths = await (await fetch(`https://raw.githubusercontent.com/estugon/advent-of-code-${year}/main/paths.json`)).json().catch(() => ({}));
 
   const users = [
     {
@@ -53,16 +52,6 @@ export async function loadUsers() {
       })
     },
     {
-      name: "xtay2",
-      lang: _ => "java",
-      langName: _ => "Java",
-      ...gitHubUrls({
-        user: "xtay2",
-        repo: "AdventOfCode",
-        path: (day, part) => `src/year${year}/day${pad(day + 1, 2)}/Task_${["A", "B"][part]}.java`
-      })
-    },
-    {
       name: "Yorik Hansen",
       lang: _ => "python",
       langName: _ => "Python",
@@ -83,27 +72,6 @@ export async function loadUsers() {
       })
     },
     {
-      name: "Estugon",
-      lang: day => estgPaths[day]?.lang,
-      langName: _ => "Mixed",
-      ...gitHubUrls({
-        user: "Estugon",
-        repo: `advent-of-code-${year}`,
-        path: day => estgPaths[day]?.path
-      })
-    },
-    {
-      name: "Dormanil",
-      lang: _ => "fsharp",
-      langName: _ => "F#",
-      ...gitHubUrls({
-        user: "Dormanil",
-        repo: "Advent-of-Code",
-        branch: `${year}`,
-        path: day => `Dec${day + 1}/Program.fs`
-      })
-    },
-    {
       name: "b3z",
       lang: _ => "python",
       langName: _ => "Python",
@@ -112,16 +80,6 @@ export async function loadUsers() {
         repo: "aoc",
         branch: "master",
         path: (day, part) => `${year}/${pad(day + 1, 2)}/${part + 1}.py`
-      })
-    },
-    {
-      name: "Dobiko",
-      lang: _ => "clike",
-      langName: _ => "C#",
-      ...gitHubUrls({
-        user: "jnccd",
-        repo: `advent-of-code-${year}`,
-        path: day => `Dec${day + 1}/Program.cs`
       })
     },
     {
@@ -152,27 +110,6 @@ export async function loadUsers() {
         user: "Ziharrk",
         repo: `aoc${year}`,
         path: day => `src/Day${day + 1}.hs`
-      })
-    },
-    {
-      name: "sebfisch",
-      lang: _ => "java",
-      langName: _ => "Java",
-      ...gitHubUrls({
-        user: "sebfisch",
-        repo: "AdventOfCode",
-        branch: "latest",
-        path: (day, part) => `year${year}/day${pad(day + 1, 2)}/Part${part + 1}.java`
-      })
-    },
-    {
-      name: "hendrick404",
-      lang: _ => "python",
-      langName: _ => "Python",
-      ...gitHubUrls({
-        user: "hendrick404",
-        repo: `advent-of-code-${year}`,
-        path: day => `day${pad(day + 1, 2)}/day${pad(day + 1, 2)}.py`
       })
     },
     {
