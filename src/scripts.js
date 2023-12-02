@@ -128,9 +128,10 @@ window.addEventListener("load", async () => {
       userName = null;
     }
 
+    console.log(userName, day, part, updateActive, updateQuery);
     state.day = day ?? state.day;
     state.part = part ?? state.part;
-    state.userName = userName ?? minBy(users, userComp(state.day)).name;
+    state.userName = userName ?? (updateQuery ? state.userName : minBy(users, userComp(state.day)).name);
 
     if (day !== null || updateActive) {
       updateUsers();
