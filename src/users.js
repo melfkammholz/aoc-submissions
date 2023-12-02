@@ -132,6 +132,17 @@ export async function loadUsers() {
         path: (day, part) => `${pad(day + 1, 2)}${["a", "b"][part]}.ddp`
       })
     },
+    {
+      name: "sebfisch",
+      lang: _ => "zig",
+      langName: _ => "Zig",
+      ...gitHubUrls({
+        user: "sebfisch",
+        repo: "AdventOfCode",
+        branch: "latest",
+        path: (day, part) => `year${year}/day${pad(day + 1, 2)}/task${part + 1}.zig`
+      })
+    },
   ];
 
   if (new Set(users.map(u => u.name)).size != users.length) {
