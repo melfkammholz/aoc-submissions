@@ -13,7 +13,7 @@
 
 #users {
   top: 1em;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .nav {
