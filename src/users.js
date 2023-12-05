@@ -143,6 +143,17 @@ export async function loadUsers() {
         path: (day, part) => `year${year}/day${pad(day + 1, 2)}/task${part + 1}.zig`
       })
     },
+    {
+      name: "Kazumi",
+      lang: _ => "csharp",
+      langName: _ => "C#",
+      ...gitHubUrls({
+        user: "Dormanil",
+        repo: "Advent-of-Code",
+        branch: `${year}`,
+        path: day => `Dec${day + 1}/Program.cs`
+      })
+    },
   ];
 
   if (new Set(users.map(u => u.name)).size != users.length) {
