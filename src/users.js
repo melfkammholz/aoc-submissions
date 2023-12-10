@@ -5,6 +5,7 @@ import { gitHubUrls, pad } from './utils.js';
 export async function loadUsers() {
   // TODO handle error if necessary?
   const fwcdPaths = await (await fetch(`https://raw.githubusercontent.com/fwcd/advent-of-code-${year}/main/paths.json`)).json().catch(() => ({}));
+  const kazumiPaths = await (await fetch(`https://raw.githubusercontent.com/Dormanil/Advent-of-Code/${year}/exceptionInfo.json`)).json().catch(() => ({}));
 
   const users = [
     {
@@ -145,13 +146,14 @@ export async function loadUsers() {
     },
     {
       name: "Kazumi",
-      lang: _ => "csharp",
-      langName: _ => "C#",
+      lang: day => kazumiPaths[`${day + 1}`]?.lang ?? "csharp",
+      langAnnotation: "Today: ",
+      langName: day => kazumiPaths[`${day + 1}`]?.langName ?? "C#",
       ...gitHubUrls({
         user: "Dormanil",
         repo: "Advent-of-Code",
         branch: `${year}`,
-        path: day => `Dec${day + 1}/Program.cs`
+        path: day => `Dec${day + 1}/Program.${kazumiPaths[`${day + 1}`]?.extension ?? "cs"}`
       })
     },
   ];
