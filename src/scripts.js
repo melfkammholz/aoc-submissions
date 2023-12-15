@@ -30,8 +30,8 @@ window.addEventListener("load", async () => {
     const url = user.solutionUrl(day, part);
     const preEl = document.createElement("pre");
     const codeEl = document.createElement("code");
-    const lang = user.lang(day);
-    const encoding = ("encoding" in user ? user.encoding(day) : null) || "utf-8";
+    const lang = user.lang(day, part);
+    const encoding = ("encoding" in user ? user.encoding(day, part) : null) || "utf-8";
     const decoder = new TextDecoder(encoding);
     try {
       const result = url ? await fetch(url) : null;
@@ -111,7 +111,7 @@ window.addEventListener("load", async () => {
           <span class="user-name">${user.name}</span>
           <span class="user-lang">
             ${user.langAnnotation ? `<span class="user-lang-annotation">${user.langAnnotation}</span>` : ""}
-            <span class="user-lang-name">${user.langName(state.day)}</span>
+            <span class="user-lang-name">${user.langName(state.day, state.part)}</span>
           </span>
         </li>
       `;
@@ -132,10 +132,10 @@ window.addEventListener("load", async () => {
     state.part = part ?? state.part;
     state.userName = userName ?? (updateQuery ? state.userName : minBy(users, userComp(state.day)).name);
 
-    if (day !== null || updateActive) {
+    if (day !== null || part !== null || updateActive) {
       updateUsers();
     }
-    if (userName !== null || day !== null || updateActive) {
+    if (userName !== null || day !== null || part !== null || updateActive) {
       setActive("#users .list-group-item", userIndex(state.userName));
     }
     if (day !== null || updateActive) {

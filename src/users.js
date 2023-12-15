@@ -7,6 +7,8 @@ export async function loadUsers() {
   const fwcdPaths = await (await fetch(`https://raw.githubusercontent.com/fwcd/advent-of-code-${year}/main/paths.json`)).json().catch(() => ({}));
   const kazumiPaths = await (await fetch(`https://raw.githubusercontent.com/Dormanil/Advent-of-Code/${year}/exceptionInfo.json`)).json().catch(() => ({}));
 
+  const fwcdSolution = (day, part) => (fwcdPaths[day]?.parts ?? [])[part] ?? fwcdPaths[day];
+
   const users = [
     {
       name: "Alexander P",
@@ -42,14 +44,14 @@ export async function loadUsers() {
     },
     {
       name: "fwcd",
-      lang: day => fwcdPaths[day]?.lang?.codemirror,
+      lang: (day, part) => fwcdSolution(day, part)?.lang?.codemirror,
       langAnnotation: "Today: ",
-      langName: day => fwcdPaths[day]?.lang?.name ?? "Unknown",
-      encoding: day => fwcdPaths[day]?.encoding,
+      langName: (day, part) => fwcdSolution(day, part)?.lang?.name ?? "Unknown",
+      encoding: (day, part) => fwcdSolution(day, part)?.encoding,
       ...gitHubUrls({
         user: "fwcd",
         repo: `advent-of-code-${year}`,
-        path: day => fwcdPaths[day]?.path
+        path: (day, part) => fwcdSolution(day, part)?.path
       })
     },
     {
