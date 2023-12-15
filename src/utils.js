@@ -1,8 +1,14 @@
 /** Generates solution urls for GitHub. */
 export function gitHubUrls({ user, repo, branch = "main", path }) {
   return {
-    solutionUrl: (day, part) => `https://raw.githubusercontent.com/${user}/${repo}/${branch}/${path(day, part)}`,
-    solutionWebUrl: (day, part) => `https://github.com/${user}/${repo}/blob/${branch}/${path(day, part)}`,
+    solutionUrl: (day, part) => {
+      const p = path(day, part);
+      return p ? `https://raw.githubusercontent.com/${user}/${repo}/${branch}/${p}` : null;
+    },
+    solutionWebUrl: (day, part) => {
+      const p = path(day, part);
+      return p ? `https://github.com/${user}/${repo}/blob/${branch}/${p}` : null;
+    },
   };
 }
 
