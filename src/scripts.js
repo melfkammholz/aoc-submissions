@@ -7,8 +7,8 @@ window.addEventListener("load", async () => {
   
   const minBy = (xs, p) => xs.reduce((y, x) => p(y, x) < 0 ? y : x, xs[0]);
   const comps = (...ps) => (a, b) => ps.reduce((r, p) => r == 0 ? p(a, b) : r, 0);
-  const userComp = day => comps(
-    (a, b) => a.langName(day).localeCompare(b.langName(day)),
+  const userComp = (day, part) => comps(
+    (a, b) => a.langName(day, part).localeCompare(b.langName(day, part)),
     (a, b) => a.name.localeCompare(b.name)
   );
 
@@ -23,7 +23,7 @@ window.addEventListener("load", async () => {
   const state = {
     day: days - 1,
     part: 0,
-    userName: minBy(users, userComp(days - 1)).name,
+    userName: minBy(users, userComp(days - 1, 0)).name,
   };
 
   async function loadSolution(user, day, part) {
@@ -103,7 +103,7 @@ window.addEventListener("load", async () => {
     const usersEl = document.getElementById("users");
     usersEl.innerHTML = "";
 
-    users.sort(userComp(state.day));
+    users.sort(userComp(state.day, state.part));
 
     users.forEach(user => {
       const el = render`
@@ -130,7 +130,7 @@ window.addEventListener("load", async () => {
 
     state.day = day ?? state.day;
     state.part = part ?? state.part;
-    state.userName = userName ?? (updateQuery ? state.userName : minBy(users, userComp(state.day)).name);
+    state.userName = userName ?? (updateQuery ? state.userName : minBy(users, userComp(state.day, state.part)).name);
 
     if (day !== null || part !== null || updateActive) {
       updateUsers();
