@@ -115,7 +115,7 @@ window.addEventListener("load", async () => {
       lang: _ => "rust",
       solutionUrl: (day, part) => {
         const _day = (day + 1).toString().padStart(2, "0");
-        return `https://raw.githubusercontent.com/Skgland/Advent-of-Code-2021/main/year2021/src/day${_day}.rs`
+        return `https://raw.githubusercontent.com/Skgland/Advent-of-Code-2021/main/crates/year2021/src/day${_day}.rs`
       }
     }
   ];
