@@ -71,7 +71,7 @@ export async function loadUsers() {
       ...gitHubUrls({
         user: "Skgland",
         repo: "Advent-of-Code",
-        path: day => `year${year}/src/day${pad(day + 1, 2)}.rs`
+        path: day => `crates/year${year}/src/day${pad(day + 1, 2)}.rs`
       })
     },
     {
