@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Submission Board &ndash; Advent of Code</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js" integrity="sha512-hpZ5pDCF2bRCweL5WoA0/N1elet1KYL5mx3LP555Eg/0ZguaHawxNvEjF6O3rufAChs16HVNhEc6blF/rZoowQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/plugins/autoloader/prism-autoloader.min.js" integrity="sha512-sv0slik/5O0JIPdLBCR2A3XDg/1U3WuDEheZfI/DI5n8Yqc3h5kjrnr46FGBNiUAJF7rE4LHKwQ/SoSLRKAxEA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="src/scripts.js" type="module"></script>
+  </head>
+  <body>
+    <div class="container-fluid" style="margin: 1em 0;">
+      <div class="row">
+        <div id="left" class="col-sm-3">
+          <ul id="users" class="list-group"></ul>
+          <div id="keyboard">
+            <h5>Keyboard shortcuts</h5>
+            <ul style="margin-bottom: 0;">
+              <li><span class="key">w</span>/<span class="key">s</span> move between users</li>
+              <li><span class="key">a</span>/<span class="key">d</span> move between tasks</li>
+              <li><span class="key">q</span> switch between task parts</li>
+            </ul>
+            <div><small>(You may also use <code>hjkl</code>.)</small></div>
+            <div><small><a href="/2022">2022</a> <a href="/2021">2021</a></small></div>
+          </div>
+        </div>
+        <div class="col-sm-9">
+          <ul class="nav nav-pills">
+            <li class="nav-item">
+              <a class="nav-link part">A</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link part">B</a>
+            </li>
+          </ul>
+          <div id="preview" style="margin-top: 1em;"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
