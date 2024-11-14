@@ -4,6 +4,19 @@ A small website showcasing different solutions for the Advent of Code.
 
 [The live page can be found here.](https://melfkammholz.github.io/aoc-submissions/)
 
+## Make Your Code Available
+
+Depending on how versed you are in managing your code with git, you might want
+to opt for different approaches. 
+- If you have never worked with git before, then learning git might be a 
+  daunting task. If you want to take it easy, choose GitHub to host your code, 
+  [you can use the web UI upload and edit files](https://docs.github.com/en/repositories). 
+  GitLab offers [similar ways of managing code](https://docs.gitlab.com/ee/user/project/repository/)
+  as well.
+- If you are up for the challenge, you may use [this resource](https://git-scm.com/)
+  as a starting point. There are also many video tutorials and cheatsheets 
+  available online.
+
 
 ## Showcase Your Solutions
 
