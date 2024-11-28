@@ -158,6 +158,16 @@ export async function loadUsers() {
         path: day => `Dec${day + 1}/Program.${kazumiPaths[`${day + 1}`]?.extension ?? "cs"}`
       })
     },
+    {
+      name: "Sesquil",
+      lang: _ => "python",
+      langName: _ => "Python",
+      ...gitHubUrls({
+        user: "sesquil",
+        repo: `aoc${shortYear}`,
+        path: (day, part) => `day${pad(day + 1, 2)}/part_${part + 1}.py`
+      })
+    },
   ];
 
   if (new Set(users.map(u => u.name)).size != users.length) {
