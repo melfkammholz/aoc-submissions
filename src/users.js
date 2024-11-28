@@ -164,7 +164,7 @@ export async function loadUsers() {
       langName: _ => "Python",
       ...gitHubUrls({
         user: "sesquil",
-        repo: "aoc${shortYear}",
+        repo: `aoc${shortYear}`,
         path: (day, part) => `day${pad(day + 1, 2)}/part_${part + 1}.py`
       })
     },
