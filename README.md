@@ -51,8 +51,10 @@ This website uses PrismJS for syntax highlighting. Please make sure that you
 [choose the correct abbreviation](https://prismjs.com/#supported-languages) 
 for your programming language. There are some abstractions for providing all
 necessary URLs available. You may want to use the entries of others as an 
-example.
-
+example. If you intend on using multiple programming languages, you have to
+maintain a JSON file that helps us in choosing the correct labels and syntax
+highlighting. Here is [an example of such a file](https://github.com/fwcd/advent-of-code-2023/blob/main/paths.json).
+These files are fetched in `src/users.js`.
 
 ## Local Development
 
