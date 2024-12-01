@@ -208,6 +208,16 @@ export async function loadUsers() {
         path: (day, part) => `/Tag${day + 1}/day${day + 1}.py`
       })
     },
+    {
+      name: "hype09",
+      lang: _ => "fsharp",
+      langName: _ => "F#",
+      ...gitHubUrls({
+        user: "hype09",
+        repo: "aoc2024",
+        path: (day, part) => `Day${pad(day + 1, 2)}/Part${pad(day + 1, 2)}.fs`
+      })
+    },
   ];
 
   if (new Set(users.map(u => u.name)).size != users.length) {
