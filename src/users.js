@@ -198,6 +198,16 @@ export async function loadUsers() {
         path: (day, part) => `src/Day${pad(day + 1, 2)}.hs`
       })
     },
+    {
+      name: "CoolCode2020",
+      lang: _ => "python",
+      langName: _ => "Python",
+      ...gitHubUrls({
+        user: "CoolCode2020",
+        repo: "AOC",
+        path: (day, part) => `/Tag${day + 1}/day${day + 1}.py`
+      })
+    },
   ];
 
   if (new Set(users.map(u => u.name)).size != users.length) {
