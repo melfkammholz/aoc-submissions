@@ -178,6 +178,16 @@ export async function loadUsers() {
         path: (day, part) => `${year}/day${pad(day + 1, 2)}/puzzle${part + 1}.rkt`
       })
     },
+    {
+      name: "xtay2",
+      lang: _ => "java",
+      langName: _ => "Java",
+      ...gitHubUrls({
+        user: "xtay2",
+        repo: "AdventOfCode",
+        path: (day, part) => `src/year${year}/day${pad(day + 1, 2)}/Task_${["A", "B"][part]}.java`
+      })
+    },
   ];
 
   if (new Set(users.map(u => u.name)).size != users.length) {
