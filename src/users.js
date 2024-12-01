@@ -168,6 +168,16 @@ export async function loadUsers() {
         path: (day, part) => `day${pad(day + 1, 2)}/part_${part + 1}.py`
       })
     },
+    {
+      name: "palisn",
+      lang: _ => "racket",
+      langName: _ => "Racket",
+      ...gitHubUrls({
+        user: "palisn",
+        repo: "advent-of-code",
+        path: (day, part) => `${year}/day${pad(day + 1, 2)}/puzzle${part + 1}.rkt`
+      })
+    },
   ];
 
   if (new Set(users.map(u => u.name)).size != users.length) {
