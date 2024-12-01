@@ -188,6 +188,16 @@ export async function loadUsers() {
         path: (day, part) => `src/year${year}/day${pad(day + 1, 2)}/Task_${["A", "B"][part]}.java`
       })
     },
+    {
+      name: "JaGitJe",
+      lang: _ => "haskell",
+      langName: _ => "Haskell",
+      ...gitHubUrls({
+        user: "JaGitJe",
+        repo: `adventofcode${shortYear}`,
+        path: (day, part) => `src/Day${pad(day + 1, 2)}.hs`
+      })
+    },
   ];
 
   if (new Set(users.map(u => u.name)).size != users.length) {
