@@ -137,6 +137,7 @@ export async function loadUsers() {
         user: "Magi3r",
         repo: `AoC-${year}`,
         path: (day, part) => magi3rSolution(day, part)?.path
+      })
     },
     {
       name: "sebfisch",
