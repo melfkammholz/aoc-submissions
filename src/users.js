@@ -242,6 +242,17 @@ export async function loadUsers() {
         repo: `AdventOfCode${year}`,
         path: (day, part) => `${pad(day + 1, 2)}.py`
       })
+    },
+    {
+      name: "Hendrik",
+      lang: _ => "python",
+      langName: _ => "Python",
+      ...gitHubUrls({
+        user: "hendrick404",
+        repo: "advent-of-code-2024",
+        branch: "main",
+        path: (day, part) => `day${pad(day + 1, 2)}/part${pad(part + 1, 2)}.py`
+      })
     }
   ];
 
