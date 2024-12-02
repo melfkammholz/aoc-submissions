@@ -7,7 +7,7 @@ export async function loadUsers() {
   const fwcdPaths = await (await fetch(`https://raw.githubusercontent.com/fwcd/advent-of-code-${year}/main/paths.json`)).json().catch(() => ({}));
   const kazumiPaths = await (await fetch(`https://raw.githubusercontent.com/Dormanil/Advent-of-Code/${year}/exceptionInfo.json`)).json().catch(() => ({}));
   const magi3rPaths = await (await fetch(`https://raw.githubusercontent.com/Magi3r/AoC-${year}/main/paths.json`)).json().catch(() => ({}));
-  
+
   const fwcdSolution = (day, part) => (fwcdPaths[day]?.parts ?? [])[part] ?? fwcdPaths[day];
   const magi3rSolution = (day, part) => (magi3rPaths[day]?.parts ?? [])[part] ?? magi3rPaths[day];
 
@@ -233,6 +233,16 @@ export async function loadUsers() {
         path: (day, part) => `${pad(day + 1, 2)}/part_${part + 1}.py`
       })
     },
+    {
+      name: "Morsie (Hannes)",
+      lang: _ => "python",
+      langName: _ => "Python",
+      ...gitHubUrls({
+        user: "hnnsb",
+        repo: `AdventOfCode${year}`,
+        path: (day, part) => `${pad(day + 1, 2)}.py`
+      })
+    }
   ];
 
   if (new Set(users.map(u => u.name)).size != users.length) {
