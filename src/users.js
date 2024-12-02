@@ -6,8 +6,10 @@ export async function loadUsers() {
   // TODO handle error if necessary?
   const fwcdPaths = await (await fetch(`https://raw.githubusercontent.com/fwcd/advent-of-code-${year}/main/paths.json`)).json().catch(() => ({}));
   const kazumiPaths = await (await fetch(`https://raw.githubusercontent.com/Dormanil/Advent-of-Code/${year}/exceptionInfo.json`)).json().catch(() => ({}));
-
+  const magi3rPaths = await (await fetch(`https://raw.githubusercontent.com/Magi3r/AoC-${year}/main/paths.json`)).json().catch(() => ({}));
+  
   const fwcdSolution = (day, part) => (fwcdPaths[day]?.parts ?? [])[part] ?? fwcdPaths[day];
+  const magi3rSolution = (day, part) => (magi3rPaths[day]?.parts ?? [])[part] ?? magi3rPaths[day];
 
   const users = [
     {
@@ -127,13 +129,14 @@ export async function loadUsers() {
     },
     {
       name: "Magi3r",
-      lang: _ => "esolang",
-      langName: _ => "DDP",
+      lang: (day, part) => magi3rSolution(day, part)?.lang?.codemirror,
+      langAnnotation: "Today: ",
+      langName: (day, part) => magi3rSolution(day, part)?.lang?.name ?? "Unknown",
+      encoding: (day, part) => magi3rSolution(day, part)?.encoding,
       ...gitHubUrls({
         user: "Magi3r",
         repo: `AoC-${year}`,
-        path: (day, part) => `${pad(day + 1, 2)}${["a", "b"][part]}.ddp`
-      })
+        path: (day, part) => magi3rSolution(day, part)?.path
     },
     {
       name: "sebfisch",
