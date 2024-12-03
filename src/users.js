@@ -278,7 +278,16 @@ export async function loadUsers() {
         path: (day, part) => SGSolution(day, part)?.path
       })
     },
-
+    {
+      name: "mhu",
+      lang: _ => "zig",
+      langName: _ => "Zig",
+      ...gitHubUrls({
+        user: "marekhummel",
+        repo: `advent-of-code`,
+        path: (day, part) => `${year}/zig/solutions/day${pad(day + 1, 2)}.zig`
+      })
+    }
   ];
 
   if (new Set(users.map(u => u.name)).size != users.length) {
