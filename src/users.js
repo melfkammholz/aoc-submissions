@@ -5,10 +5,12 @@ import { gitHubUrls, pad } from './utils.js';
 export async function loadUsers() {
   // TODO handle error if necessary?
   const fwcdPaths = await (await fetch(`https://raw.githubusercontent.com/fwcd/advent-of-code-${year}/main/paths.json`)).json().catch(() => ({}));
+  const SGPaths = await (await fetch(`https://raw.githubusercontent.com/SergejGleithmann/aoc/main/${year}/paths.json`)).json().catch(() => ({}));
   const kazumiPaths = await (await fetch(`https://raw.githubusercontent.com/Dormanil/Advent-of-Code/${year}/exceptionInfo.json`)).json().catch(() => ({}));
   const magi3rPaths = await (await fetch(`https://raw.githubusercontent.com/Magi3r/AoC-${year}/main/paths.json`)).json().catch(() => ({}));
 
   const fwcdSolution = (day, part) => (fwcdPaths[day]?.parts ?? [])[part] ?? fwcdPaths[day];
+  const SGSolution = (day, part) => (SGPaths[day]?.parts ?? [])[part] ?? SGPaths[day];
   const magi3rSolution = (day, part) => (magi3rPaths[day]?.parts ?? [])[part] ?? magi3rPaths[day];
 
   const users = [
@@ -262,6 +264,18 @@ export async function loadUsers() {
         user: "romanhemens",
         repo: `advent_of_code2024`,
         path: (day, part) => `Day${day + 1}/${part === 1 ? "first" : "second"}.py`
+      })
+    },
+    {
+      name: "Sergej Gleithmann",
+      lang: (day, part) => SGSolution(day, part)?.lang?.codemirror,
+      langAnnotation: "Today: ",
+      langName: (day, part) => SGSolution(day, part)?.lang?.name ?? "Unknown",
+      encoding: (day, part) => SGSolution(day, part)?.encoding,
+      ...gitHubUrls({
+        user: "SergejGleithmann",
+        repo: `aoc`,
+        path: (day, part) => SGSolution(day, part)?.path
       })
     },
     {
