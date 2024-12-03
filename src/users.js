@@ -253,6 +253,16 @@ export async function loadUsers() {
         branch: "main",
         path: (day, part) => `day${pad(day + 1, 2)}/part${pad(part + 1, 2)}.py`
       })
+    },
+    {
+      name: "Roman",
+      lang: _ => "python",
+      langName: _ => "Python",
+      ...gitHubUrls({
+        user: "romanhemens",
+        repo: `advent_of_code2024`,
+        path: (day, part) => `Day${day + 1}/${part === 1 ? "first" : "second"}.py`
+      })
     }
   ];
 
