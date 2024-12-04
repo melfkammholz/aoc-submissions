@@ -263,7 +263,7 @@ export async function loadUsers() {
       ...gitHubUrls({
         user: "romanhemens",
         repo: `advent_of_code2024`,
-        path: (day, part) => `Day${day + 1}/${part === 1 ? "first" : "second"}.py`
+        path: (day, part) => `Day${day + 1}/${part === 0 ? "first" : "second"}.py`
       })
     },
     {
