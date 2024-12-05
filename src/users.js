@@ -287,6 +287,16 @@ export async function loadUsers() {
         repo: `advent-of-code`,
         path: (day, part) => `${year}/zig/solutions/day${pad(day + 1, 2)}.zig`
       })
+    },
+    {
+      name: "Bennit",
+      lang: _ => "python",
+      langName: _ => "Python",
+      ...gitHubUrls({
+        user: "Bennit99",
+        repo: `AdventOfCode`,
+        path: (day, part) => `${year}/${day + 1}${["a", "b"][part]}.py`
+      })
     }
   ];
 
