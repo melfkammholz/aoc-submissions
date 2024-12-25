@@ -7,6 +7,7 @@ export async function loadUsers() {
   const fwcdPaths = await (await fetch(`https://raw.githubusercontent.com/fwcd/advent-of-code-${year}/main/paths.json`)).json().catch(() => ({}));
   const kazumiPaths = await (await fetch(`https://raw.githubusercontent.com/Dormanil/Advent-of-Code/${year}/exceptionInfo.json`)).json().catch(() => ({}));
   const magi3rPaths = await (await fetch(`https://raw.githubusercontent.com/Magi3r/AoC-${year}/main/paths.json`)).json().catch(() => ({}));
+  const hendrick404Paths = await (await fetch(`https://raw.githubusercontent.com/hendrick404/advent-of-code-${year}/main/paths.json`)).json().catch(() => ({}));
 
   const fwcdSolution = (day, part) => (fwcdPaths[day]?.parts ?? [])[part] ?? fwcdPaths[day];
   const magi3rSolution = (day, part) => (magi3rPaths[day]?.parts ?? [])[part] ?? magi3rPaths[day];
@@ -245,13 +246,14 @@ export async function loadUsers() {
     },
     {
       name: "Hendrik",
-      lang: _ => "python",
-      langName: _ => "Python",
+      lang: day => hendrick404Paths[day]?.lang.identifier,
+      langName: day => hendrick404Paths[day]?.lang.name ?? "Unknown",
+      langAnnotation: "Today: ",
       ...gitHubUrls({
         user: "hendrick404",
-        repo: "advent-of-code-2024",
+        repo: `advent-of-code-${year}`,
         branch: "main",
-        path: (day, part) => `day${pad(day + 1, 2)}/part${pad(part + 1, 2)}.py`
+        path: (day, part) => hendrick404Paths[day]?.path ?? ((hendrick404Paths[day]?.paths ?? [])[part])
       })
     }
   ];
