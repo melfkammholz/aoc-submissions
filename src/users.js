@@ -236,16 +236,6 @@ export async function loadUsers() {
         path: (day, part) => `python/aoc${shortYear}/${pad(day + 1, 2)}/part_${part + 1}.py`
       })
     },
-    // {
-    //   name: "UnDosTres",
-    //   lang: _ => "go",
-    //   langName: _ => "GO",
-    //   ...gitHubUrls({
-    //     user: "donmahallem",
-    //     repo: `aoc`,
-    //     path: (day, part) => `go/aoc${shortYear}/day${pad(day + 1, 2)}/part_${part + 1}.go`
-    //   })
-    // },
     {
       name: "Morsie (Hannes)",
       lang: _ => "python",
