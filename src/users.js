@@ -299,6 +299,16 @@ export async function loadUsers() {
         repo: `AdventOfCode`,
         path: (day, part) => `${year}/${day + 1}${["a", "b"][part]}.py`
       })
+    },
+    {
+      name: "ggb",
+      lang: _ => "clojure",
+      langName: _ => "Clojure",
+      ...gitHubUrls({
+        user: "ggb",
+        repo: "advent-of-code-2025",
+        path: (day, part) => `src/ggb/day${day}.clj`
+      })
     }
   ];
 
