@@ -282,12 +282,12 @@ export async function loadUsers() {
     },
     {
       name: "mhu",
-      lang: _ => "zig",
-      langName: _ => "Zig",
+      lang: _ => "elixir",
+      langName: _ => "Elixir",
       ...gitHubUrls({
         user: "marekhummel",
         repo: `advent-of-code`,
-        path: (day, part) => `${year}/zig/solutions/day${pad(day + 1, 2)}.zig`
+        path: (day, part) => `${year}/elixir/solutions/day${pad(day + 1, 2)}.ex`
       })
     },
     {
