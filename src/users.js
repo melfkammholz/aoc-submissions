@@ -221,7 +221,7 @@ export async function loadUsers() {
       langName: _ => "F#",
       ...gitHubUrls({
         user: "hype09",
-        repo: "aoc2024",
+        repo: "aoc2025",
         branch: "master",
         path: (day, part) => `Day${pad(day + 1, 2)}/Part${pad(part + 1, 2)}.fs`
       })
