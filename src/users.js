@@ -177,12 +177,12 @@ export async function loadUsers() {
     },
     {
       name: "palisn",
-      lang: _ => "racket",
-      langName: _ => "Racket",
+      lang: _ => "ua",
+      langName: _ => "Uiua",
       ...gitHubUrls({
         user: "palisn",
         repo: "advent-of-code",
-        path: (day, part) => `${year}/day${pad(day + 1, 2)}/puzzle${part + 1}.rkt`
+        path: (day, part) => `${year}/day${pad(day + 1, 2)}/puzzle${part + 1}.ua`
       })
     },
     {
