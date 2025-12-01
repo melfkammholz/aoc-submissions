@@ -307,7 +307,7 @@ export async function loadUsers() {
       ...gitHubUrls({
         user: "ggb",
         repo: "advent-of-code-2025",
-        path: (day, part) => `src/ggb/day${day}.clj`
+        path: (day, part) => `src/ggb/day${day + 1}.clj`
       })
     },
     {
