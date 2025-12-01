@@ -309,6 +309,16 @@ export async function loadUsers() {
         repo: "advent-of-code-2025",
         path: (day, part) => `src/ggb/day${day}.clj`
       })
+    },
+    {
+      name: "qr",
+      lang: _ => "rust",
+      langName: _ => "Rust",
+      ...gitHubUrls({
+        user: "QuantumRange",
+        repo: "aoc25",
+        path: (day, part) => `src/day${day}${part}.rs`
+      })
     }
   ];
 
