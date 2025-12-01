@@ -317,7 +317,7 @@ export async function loadUsers() {
       ...gitHubUrls({
         user: "QuantumRange",
         repo: "aoc25",
-        path: (day, part) => `src/day${day}${part}.rs`
+        path: (day, part) => `src/day${day + 1}${part + 1}.rs`
       })
     }
   ];
