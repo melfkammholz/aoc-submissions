@@ -233,7 +233,7 @@ export async function loadUsers() {
       ...gitHubUrls({
         user: "donmahallem",
         repo: `aoc`,
-        path: (day, part) => `python/aoc${shortYear}/${pad(day + 1, 2)}/part_${part + 1}.py`
+        path: (day, part) => `python/aoc${shortYear}/day${pad(day + 1, 2)}/part_${part + 1}.py`
       })
     },
     {
