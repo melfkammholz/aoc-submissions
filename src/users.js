@@ -320,7 +320,18 @@ export async function loadUsers() {
         branch: "master",
         path: (day, part) => `src/day${day + 1}${part + 1}.rs`
       })
-    }
+    },
+    {
+      name: "Eddykasp",
+      lang: _ => "python",
+      langName: _ => "Python",
+      ...gitHubUrls({
+        user: "Eddykasp",
+        repo: "AoC25",
+        branch: "main",
+        path: (day, part) => `day${pad(day + 1, 2)}/part${part + 1}.py`
+      })
+    },
   ];
 
   if (new Set(users.map(u => u.name)).size != users.length) {
