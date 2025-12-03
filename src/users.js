@@ -332,6 +332,17 @@ export async function loadUsers() {
         path: (day, part) => `day${pad(day + 1, 2)}/part${part + 1}.py`
       })
     },
+    {
+      name: "SturmEnte",
+      lang: _ => "python",
+      langName: _ => "Python",
+      ...gitHubUrls({
+        user: "SturmEnte",
+        repo: "advent-of-code",
+        branch: "main",
+        path: (day, part) => `${year}/day ${day + 1}/part${part + 1}.py`
+      })
+    },
   ];
 
   if (new Set(users.map(u => u.name)).size != users.length) {
