@@ -92,12 +92,12 @@ export async function loadUsers() {
     },
     {
       name: "H1tchhiker",
-      lang: _ => "elixir",
-      langName: _ => "Elixir",
+      lang: _ => "typescript",
+      langName: _ => "TypeScript",
       ...gitHubUrls({
         user: "n00on",
         repo: "AdventOfCode",
-        path: day => `${year}/${pad(day + 1, 2)}/day${pad(day + 1, 2)}.ex`
+        path: day => `${year}/day${pad(day + 1, 2)}.ts`
       })
     },
     {
