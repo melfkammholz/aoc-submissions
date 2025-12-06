@@ -203,8 +203,12 @@ window.addEventListener("load", async () => {
   const navEl = document.querySelector(".nav");
 
   [...Array(days)].forEach((_, day) => {
-    navEl.appendChild(createNavItem({ label: `${day + 1}`, classes: ["day"], onClick: () => {
-      updateState({ day });
+    navEl.appendChild(createNavItem({ label: `${day + 1}`, classes: ["day"], onClick: (event) => {
+      if (event.ctrlKey) {
+        location.href = "https://adventofcode.com/2025/day/" + (day + 1);
+      } else {
+        updateState({ day });
+      }
     }}));
   });
 
