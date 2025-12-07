@@ -368,6 +368,17 @@ export async function loadUsers() {
         path: (day, part) => HappyHSolution(day, part)?.path[part]
       })
     },
+    {
+      name: "Rajib",
+      lang: _ => "clike",
+      langName: _ => "C++",
+      ...gitHubUrls({
+        user: "RajibTheKing",
+        repo: "ACMProgramming",
+        branch: "master",
+        path: (day, part) => `AdventOfCode/${year}/Day_${pad(day + 1, 2)}/part${part + 1}.cpp`
+      })
+    },
   ];
 
   if (new Set(users.map(u => u.name)).size != users.length) {
