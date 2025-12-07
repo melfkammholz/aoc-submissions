@@ -204,7 +204,7 @@ window.addEventListener("load", async () => {
 
   [...Array(days)].forEach((_, day) => {
     navEl.appendChild(createNavItem({ label: `${day + 1}`, classes: ["day"], onClick: (event) => {
-      if (event.ctrlKey) {
+      if (event.ctrlKey || event.metaKey) {
         location.href = "https://adventofcode.com/2025/day/" + (day + 1);
       } else {
         updateState({ day });
