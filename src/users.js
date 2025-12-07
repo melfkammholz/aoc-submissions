@@ -9,10 +9,12 @@ export async function loadUsers() {
   // const kazumiPaths = await (await fetch(`https://raw.githubusercontent.com/Dormanil/Advent-of-Code/${year}/exceptionInfo.json`)).json().catch(() => ({}));
   // const magi3rPaths = await (await fetch(`https://raw.githubusercontent.com/Magi3r/AoC-${year}/main/paths.json`)).json().catch(() => ({}));
   // const hendrick404Paths = await (await fetch(`https://raw.githubusercontent.com/hendrick404/advent-of-code-${year}/main/paths.json`)).json().catch(() => ({}));
+  const HappyHPaths = await (await fetch(`https://raw.githubusercontent.com/realHappyH/aoc/main/paths.json`)).json().catch(() => ({}));
 
   // const fwcdSolution = (day, part) => (fwcdPaths[day]?.parts ?? [])[part] ?? fwcdPaths[day];
   const SGSolution = (day, part) => (SGPaths[day]?.parts ?? [])[part] ?? SGPaths[day];
   // const magi3rSolution = (day, part) => (magi3rPaths[day]?.parts ?? [])[part] ?? magi3rPaths[day];
+  const HappyHSolution = (day, part) => (HappyHPaths[day]?.parts ?? [])[part] ?? HappyHPaths[day];
 
   const users = [
     {
@@ -352,6 +354,18 @@ export async function loadUsers() {
         repo: "adventofcode-solutions",
         branch: "master",
         path: (day, part) => `${year}/${pad(day + 1, 2)}/${['a', 'b'][part]}.py`
+      })
+    },
+    {
+      name: "HappyH",
+      lang: (day, part) => HappyHSolution(day, part)?.lang?.codemirror,
+      langAnnotation: "Today: ",
+      langName: (day, part) => HappyHSolution(day, part)?.lang?.name ?? "Unknown",
+      encoding: (day, part) => HappyHSolution(day, part)?.encoding,
+      ...gitHubUrls({
+        user: "realHappyH",
+        repo: `aoc`,
+        path: (day, part) => HappyHSolution(day, part)?.path[part]
       })
     },
   ];
