@@ -16,7 +16,7 @@ window.addEventListener("load", async () => {
 
   const days = new Date(clamp(
       new Date(`${year}-12-01`).valueOf(), 
-      new Date(`${year}-12-25`).valueOf(), 
+      new Date(`${year}-12-12`).valueOf(), 
       Date.now() - 6 * 60 * 60 * 1000
     )).getDate();
   
