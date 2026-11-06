@@ -289,7 +289,7 @@ export async function loadUsers() {
       ...gitHubUrls({
         user: "marekhummel",
         repo: `advent-of-code`,
-        path: (day, part) => `${year}/elixir/solutions/day${pad(day + 1, 2)}.ex`
+        path: (day, part) => `src/${year}/elixir/solutions/day${pad(day + 1, 2)}.ex`
       })
     },
     // {
