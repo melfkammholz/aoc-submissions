@@ -287,7 +287,7 @@ export async function loadUsers() {
       ...gitHubUrls({
         user: "marekhummel",
         repo: `advent-of-code`,
-        path: (day, part) => `${year}/zig/solutions/day${pad(day + 1, 2)}.zig`
+        path: (day, part) => `src/${year}/zig/solutions/day${pad(day + 1, 2)}.zig`
       })
     },
     {

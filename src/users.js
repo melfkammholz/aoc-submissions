@@ -284,12 +284,12 @@ export async function loadUsers() {
     },
     {
       name: "mhu",
-      lang: _ => "elixir",
-      langName: _ => "Elixir",
+      lang: _ => "c++",
+      langName: _ => "C++",
       ...gitHubUrls({
         user: "marekhummel",
         repo: `advent-of-code`,
-        path: (day, part) => `${year}/elixir/solutions/day${pad(day + 1, 2)}.ex`
+        path: (day, part) => `src/${year}/cpp/solutions/day${pad(day + 1, 2)}.hpp`
       })
     },
     // {
